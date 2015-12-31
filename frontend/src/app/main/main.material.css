@@ -1,0 +1,6 @@
+/* Angular Material RTL Fixes */
+
+md-progress-linear .md-container
+{
+    top: 0;
+}

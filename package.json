@@ -1,0 +1,26 @@
+{
+  "name": "applicationize",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eladnava/applicationize"
+  },
+  "description": "Applicationize your favorite websites by wrapping them inside a Chrome extension that runs standalone like a native desktop app.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Elad Nava",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cheerio": "0.19.0",
+    "crx": "3.0.3",
+    "koa": "1.1.2",
+    "koa-bodyparser": "2.0.1",
+    "koa-route": "2.4.2",
+    "koa-static": "1.5.2",
+    "pem": "1.8.1",
+    "request": "2.67.0",
+    "thunkify": "2.1.2"
+  }
+}

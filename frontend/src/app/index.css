@@ -1,0 +1,20 @@
+/* Font Imports */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+
+/* General Declarations */
+html 
+{
+    background: #ebebeb;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body, input, select, textarea
+{
+    overflow: hidden;
+    background: #ebebeb;
+}
+
+a
+{
+    color: #161922;
+}
