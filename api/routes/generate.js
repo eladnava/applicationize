@@ -45,8 +45,16 @@ exports.buildCrxConfig = function *(targetUrl) {
         throw new Error('Please provide a valid URL for your extension. (It must start with http(s)://)');
     }
 
+    // Prepare request (send fake browser header)
+    var req = {
+        url: crxConfig.url,
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
+        }
+    };
+    
     // Execute GET request to provided URL
-    var response = yield thunkify(request)(crxConfig.url);
+    var response = yield thunkify(request)(req);
     
     // Load DOM into Cheerio (HTML parser)
     var dom = cheerio.load(response[0].body);
@@ -54,8 +62,8 @@ exports.buildCrxConfig = function *(targetUrl) {
     // Extract extension title from the dom's <title> tag
     crxConfig.title = dom('title').text() || crxConfig.parsedUrl.hostname;
     
-    // Create a friendly .crx filename based on the page title
-    crxConfig.filename = crxConfig.title.replace(/[^a-z0-9]/gi, '.').toLowerCase() + '.crx';
+    // Create a friendly .crx filename based on the page title (remove trailing '.')
+    crxConfig.filename = crxConfig.title.replace(/[^a-z0-9]/gi, '.').toLowerCase().replace(/\.+$/, '') + '.crx';
     
     // Extract .crx icon from page's shortcut-icon <link> element
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
@@ -67,6 +75,9 @@ exports.buildCrxConfig = function *(targetUrl) {
             break;
         case 'keep.google.com':
             crxConfig.icon = 'https://ssl.gstatic.com/keep/icon_128.png';
+            break;
+        case 'messenger.com':
+            crxConfig.icon = 'https://static.xx.fbcdn.net/rsrc.php/v2/y8/r/R_1BAhxMP5I.png';
             break;
     }
     
