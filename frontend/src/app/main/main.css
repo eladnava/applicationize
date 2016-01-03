@@ -1,14 +1,3 @@
-.main-container
-{
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 100px;
-    padding: 3em;
-    overflow-y: auto;
-    position: absolute;
-}
-
 .banner
 {
     background-attachment: fixed;
@@ -26,6 +15,7 @@
     color: #fff;
     font-weight: 200;
     font-size: 55px;
+    margin-top: 80px;
     text-align: center;
     letter-spacing: -0.025em;
 }
