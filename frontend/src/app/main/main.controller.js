@@ -11,4 +11,16 @@ angular.module('frontend')
         {
             return API.getAPIEndpoint() + '/generate';
         }
+        
+        $scope.formSubmit = function()
+        {
+            // Show loading spinner
+            $scope.loading = true;
+            
+            // TODO: Find a better way to detect file download (or navigation cancelled event)
+            $timeout(function()
+            {
+                $scope.loading = false;
+            }, 3000);
+        }
     });
