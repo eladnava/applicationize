@@ -10,7 +10,6 @@ html
 
 body, input, select, textarea
 {
-    overflow: hidden;
     background: #ebebeb;
 }
 

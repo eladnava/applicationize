@@ -15,7 +15,7 @@
     color: #fff;
     font-weight: 200;
     font-size: 55px;
-    margin-top: 80px;
+    margin: 15px 15px 0 15px;
     text-align: center;
     letter-spacing: -0.025em;
 }
@@ -28,7 +28,7 @@
 
 .overlay, .landing-page, .banner
 {
-    height: 100vh;
+    min-height: 100vh;
     -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
 }
@@ -122,6 +122,7 @@
 
 .generate-submit
 {
+    height: 110px;
     text-align: center;
     margin: 25px 0 0 0;
 }
@@ -205,6 +206,11 @@
     .slogan
     {
         font-size: 45px;
+    }
+    
+    .instructions
+    {
+        margin-bottom: 20px;
     }
 
     .generate-url input
