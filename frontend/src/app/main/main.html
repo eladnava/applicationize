@@ -32,6 +32,13 @@
                     (<a href="http://www.howtogeek.com/120743/how-to-install-extensions-from-outside-the-chrome-web-store/" target="_blank">Instructions</a>)
                 </div>
                 
+    
+                <!-- Loading -->
+                <div class="spinner" ng-show="loading">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+                
                 <!-- Generate form -->
                 <div class="generate-container" ng-class="{'hidden': loading}">
                     <form method="post" action="#" ng-submit="formSubmit()" set-generate-action>
@@ -43,12 +50,6 @@
                             <input type="submit" value="Download Extension" />
                         </div>
                     </form>
-                </div>
-    
-                <!-- Loading -->
-                <div class="spinner" ng-show="loading">
-                    <div class="double-bounce1"></div>
-                    <div class="double-bounce2"></div>
                 </div>
             </div>
         </div>
