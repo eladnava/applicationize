@@ -9,7 +9,7 @@ How it Works
 ---
 1. Enter a URL to any web app, such as https://web.whatsapp.com/.
 2. Press Enter and download the generated `.crx` Chrome extension.
-3. Open a new tab and navigate to [chrome://extensions/](chrome://extensions/) (copy the link and open it manually).
+3. Open a new tab and navigate to chrome://extensions/
 4. Drag the downloaded `.crx` file from its download folder to the extensions page and install it. Don't drag it from within Chrome, it may not work as expected.
 
 That's it! Access the applicationized web app via the **Chrome App Launcher**. If you're on Mac, drag it from the **Launchpad** to your dock to create a shortcut to it!
