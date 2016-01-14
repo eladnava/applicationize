@@ -60,7 +60,7 @@ exports.buildCrxConfig = function *(targetUrl) {
     var dom = cheerio.load(response[0].body);
     
     // Extract extension title from the dom's <title> tag
-    crxConfig.title = dom('title').text() || crxConfig.parsedUrl.hostname;
+    crxConfig.title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
     
     // Create a friendly .crx filename based on the page title (remove trailing '.')
     crxConfig.filename = crxConfig.title.replace(/[^a-z0-9]/gi, '.').toLowerCase().replace(/\.+$/, '') + '.crx';
@@ -77,7 +77,9 @@ exports.buildCrxConfig = function *(targetUrl) {
             crxConfig.icon = 'https://ssl.gstatic.com/keep/icon_128.png';
             break;
         case 'messenger.com':
-            crxConfig.icon = 'https://static.xx.fbcdn.net/rsrc.php/v2/y8/r/R_1BAhxMP5I.png';
+            // Fix weird 0x8234 chars in FB messenger <title> 
+            crxConfig.title = 'Messenger'
+            crxConfig.icon = 'https://lh5.ggpht.com/0VYAvZLR9YhosF-thqm8xl8EWsCfrEY_uk2og2f59K8IOx5TfPsXjFVwxaHVnUbuEjc=w300';
             break;
     }
     
