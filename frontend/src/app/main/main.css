@@ -92,7 +92,7 @@
 
 .generate-url
 {
-    padding: 17px;  
+    padding: 13px;  
     border-radius: 3px; 
     background: rgba(0, 0, 0, 0.3);
 }
@@ -130,9 +130,9 @@
 .generate-submit input
 {
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
-    padding: 10px 17px;
+    padding: 8px 17px;
     border-radius: 20px;
     letter-spacing: 1px;
     background: transparent;
