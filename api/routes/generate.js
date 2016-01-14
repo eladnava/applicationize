@@ -62,8 +62,8 @@ exports.buildCrxConfig = function *(targetUrl) {
     // Extract extension title from the dom's <title> tag
     crxConfig.title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
     
-    // Create a friendly .crx filename based on the page title (remove trailing '.')
-    crxConfig.filename = crxConfig.title.replace(/[^a-z0-9]/gi, '.').toLowerCase().replace(/\.+$/, '') + '.crx';
+    // Create a friendly .crx filename based on the given hostname
+    crxConfig.filename = crxConfig.parsedUrl.hostname + '.crx';
     
     // Extract .crx icon from page's shortcut-icon <link> element
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
