@@ -26,4 +26,4 @@ var port = process.env.PORT || 4000;
 app.listen(port);
 
 // Log port
-console.log('Server listening on port ' + port);
+console.log('Server listening on http://localhost:' + port);
