@@ -8,21 +8,28 @@ http://applicationize.com/
 
 Demo
 ---
-<a href="http://applicationize.com" target="_blank"><img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/preview.png" /></a>
+
+Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running as an applicationized desktop app:
+
+<img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/demo.jpg" width="512" />
 
 How it Works
 ---
 1. Enter a URL to any web app, such as https://web.whatsapp.com/.
-2. Press Enter and download the generated `.crx` Chrome extension.
+2. Press `Enter` and download the generated Chrome extension.
 3. Open a new tab and navigate to chrome://extensions/
-4. Drag the downloaded `.crx` file from its download folder to the extensions page and install it. Don't drag it from within Chrome, it may not work as expected. More on installing `.crx` files manually [here](http://www.simplehelp.net/2012/08/19/how-to-install-extensions-that-arent-from-the-chrome-web-store/).
+4. Drag the downloaded `.crx` file from its download folder to the extensions page and install it. Don't drag it from within Chrome, it may not work as expected. 
+
+Need help with installing the `.crx`? Check out this [informative guide](http://www.simplehelp.net/2012/08/19/how-to-install-extensions-that-arent-from-the-chrome-web-store/).
 
 That's it! Access the applicationized web app via the **Chrome App Launcher**. If you're on Mac, drag it from the **Launchpad** to your dock to create a shortcut to it!
 
-Run the Server
+Running Locally
 ---
 
-Run the following commands in the root directory of this project.
+Run the following commands in the root directory of this project:
 
-    npm install
-    npm start
+```shell
+$ npm install
+$ npm start
+```
