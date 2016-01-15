@@ -120,6 +120,11 @@ exports.generateCrx = function* (crxConfig) {
         // Download it and overwrite default icon
         yield exports.downloadIcon(crxConfig, crx);
     }
+    else
+    {
+        // Set a placeholder icon instead
+        yield exports.setPlaceholderIcon(crxConfig, crx);
+    }
 
     // Pack the extension into a .crx and return its buffer
     var crxBuffer = yield crx.pack();
@@ -142,6 +147,25 @@ exports.downloadIcon = function*(crxConfig, crx) {
     }
 }
 
+exports.setPlaceholderIcon = function*(crxConfig, crx) {
+    // Grab first char (hopefully a letter)
+    var letter = crxConfig.parsedUrl.hostname.substring(0, 1).toUpperCase();
+    
+    // Not an English letter?
+    if (! letter.match(/[A-Z]/) ) {
+        return;
+    }
+    
+    // Build path to placeholder letter icon
+    var copyFromPath = join(__dirname, '../lib/extension/icons/fallback/' + letter + '.png');
+
+    // Set target copy path as current extension icon's path
+    var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
+    
+    // Copy the local file and override extension's default icon
+    yield exports.copyLocalFile(copyFromPath, copyToPath);
+}
+
 exports.sendCrx = function*(request, crxConfig, crxBuffer) {
     // Set content-type to .crx extension mime type
     request.set('content-type', 'application/x-chrome-extension');
@@ -153,12 +177,12 @@ exports.sendCrx = function*(request, crxConfig, crxBuffer) {
     request.body = crxBuffer;
 }
 
-exports.downloadFile = function(url, filepath) {
+exports.downloadFile = function(url, filePath) {
     // Promisify the request
     return new Promise(function(resolve, reject) {
         try {
             // Create write stream
-            var stream = fs.createWriteStream(filepath);
+            var stream = fs.createWriteStream(filePath);
             
             // Wait for finish event
             stream.on('finish', function() {
@@ -166,8 +190,30 @@ exports.downloadFile = function(url, filepath) {
                 return resolve(true);
             });
             
-            // Return the piped request
+            // Pipe the request to a file
             return request(url).pipe(stream);
+        } catch (e) {
+            // Failed
+            return reject(e);
+        }
+    });
+};
+
+exports.copyLocalFile = function(from, to) {
+    // Promisify the request
+    return new Promise(function(resolve, reject) {
+        try {
+            // Create write stream
+            var writeStream = fs.createWriteStream(to);
+            
+            // Wait for finish event
+            writeStream.on('finish', function() {
+                // Resolve the promise
+                return resolve(true);
+            });
+            
+            // Pipe the "from" stream into the "to" stream
+            fs.createReadStream(from).pipe(writeStream);
         } catch (e) {
             // Failed
             return reject(e);
