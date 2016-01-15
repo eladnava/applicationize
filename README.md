@@ -4,7 +4,7 @@ Applicationize
 
 Applicationize your favorite web apps by wrapping them inside a Chrome extension that runs standalone like a native desktop app.
 
-http://applicationize.com/
+<a href="http://applicationize.com/" target="_blank">http://applicationize.com/</a>
 
 Demo
 ---
@@ -15,7 +15,7 @@ Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running a
 
 How to Use
 ---
-1. Go to http://applicationize.com/.
+1. Go to <a href="http://applicationize.com/" target="_blank">http://applicationize.com/</a>.
 2. Enter a URL to any web app, such as https://web.whatsapp.com/.
 3. Press `Enter` and download the generated Chrome extension.
 4. Open a new tab and navigate to chrome://extensions/
