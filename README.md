@@ -8,7 +8,7 @@ http://applicationize.com/
 
 Demo
 ---
-<img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/preview.png" />
+<a href="http://applicationize.com" target="_blank"><img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/preview.png" /></a>
 
 How it Works
 ---
