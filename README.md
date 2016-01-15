@@ -13,12 +13,13 @@ Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running a
 
 <img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/demo.jpg" width="512" />
 
-How it Works
+How to Use
 ---
-1. Enter a URL to any web app, such as https://web.whatsapp.com/.
-2. Press `Enter` and download the generated Chrome extension.
-3. Open a new tab and navigate to chrome://extensions/
-4. Drag the downloaded `.crx` file from its download folder to the extensions page and install it. Don't drag it from within Chrome, it may not work as expected. 
+1. Go to http://applicationize.com/.
+2. Enter a URL to any web app, such as https://web.whatsapp.com/.
+3. Press `Enter` and download the generated Chrome extension.
+4. Open a new tab and navigate to chrome://extensions/
+5. Drag the downloaded `.crx` file from its download folder to the extensions page and install it. Don't drag it from within Chrome, it may not work as expected. 
 
 Need help with installing the `.crx`? Check out this [informative guide](http://www.simplehelp.net/2012/08/19/how-to-install-extensions-that-arent-from-the-chrome-web-store/).
 
