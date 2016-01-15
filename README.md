@@ -5,6 +5,10 @@ Applicationize your favorite web apps by wrapping them inside a Chrome extension
 
 http://applicationize.com/
 
+Demo
+---
+<img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/preview.png" />
+
 How it Works
 ---
 1. Enter a URL to any web app, such as https://web.whatsapp.com/.
