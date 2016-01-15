@@ -1,5 +1,6 @@
 Applicationize
 ===================
+[![Gitter](https://badges.gitter.im/eladnava/applicationize.svg)](https://gitter.im/eladnava/applicationize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Applicationize your favorite web apps by wrapping them inside a Chrome extension that runs standalone like a native desktop app.
 
