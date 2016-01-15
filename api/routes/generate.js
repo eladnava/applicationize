@@ -26,26 +26,28 @@ module.exports = function *() {
 }
 
 exports.buildCrxConfig = function *(targetUrl) {
-    // Prepare crx object
-    var crxConfig = {};
-    
-    // Get target URL from params
-    crxConfig.url = targetUrl;
-
     // Bad input?
-    if (! crxConfig.url) {
+    if (! targetUrl) {
         throw new Error('Please provide a URL to continue.');
     }
     
     // Parse URL (to retrieve hostname and verify its validity)
-    crxConfig.parsedUrl = url.parse(crxConfig.url);
+    var parsedUrl = url.parse(targetUrl);
     
     // Parse failed?
-    if (! crxConfig.parsedUrl || ! crxConfig.parsedUrl.protocol || crxConfig.parsedUrl.protocol.indexOf('http') == -1) {
+    if (! parsedUrl || ! parsedUrl.protocol || parsedUrl.protocol.indexOf('http') == -1) {
         throw new Error('Please provide a valid URL for your extension. (It must start with http(s)://)');
     }
+        
+    // Prepare crx object with default values
+    var crxConfig = {
+        url: targetUrl,
+        parsedUrl: parsedUrl,
+        title: parsedUrl.hostname,
+        filename: parsedUrl.hostname + '.crx'
+    };
 
-    // Prepare request (send fake browser header)
+    // Prepare request (send fake browser user-agent header)
     var req = {
         url: crxConfig.url,
         headers: {
@@ -53,17 +55,24 @@ exports.buildCrxConfig = function *(targetUrl) {
         }
     };
     
+    // Page HTML response
+    var res;
+    
     // Execute GET request to provided URL
-    var response = yield thunkify(request)(req);
+    // May fail for internal URLs, continue anyway
+    try {
+        res = yield thunkify(request)(req);
+    }
+    catch(exc) {
+        // Return fallback config
+        return crxConfig;
+    }
     
     // Load DOM into Cheerio (HTML parser)
-    var dom = cheerio.load(response[0].body);
+    var dom = cheerio.load(res[0].body);
     
     // Extract extension title from the dom's <title> tag
     crxConfig.title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
-    
-    // Create a friendly .crx filename based on the given hostname
-    crxConfig.filename = crxConfig.parsedUrl.hostname + '.crx';
     
     // Extract .crx icon from page's shortcut-icon <link> element
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
