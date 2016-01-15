@@ -1,6 +1,8 @@
 Applicationize
 ===================
 
+[![Join the chat at https://gitter.im/eladnava/applicationize](https://badges.gitter.im/eladnava/applicationize.svg)](https://gitter.im/eladnava/applicationize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Applicationize your favorite web apps by wrapping them inside a Chrome extension that runs standalone like a native desktop app.
 
 http://applicationize.com/
