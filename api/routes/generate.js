@@ -32,7 +32,7 @@ module.exports = function *() {
 };
 
 exports.buildCrxConfig = function *(targetUrl) {
-    var parsedUrl = exports.validateUrl(targetUrl);
+    var parsedUrl = exports.parseUrl(targetUrl);
 
     // Prepare crx object with default values
     var crxConfig = {
@@ -62,7 +62,7 @@ exports.buildCrxConfig = function *(targetUrl) {
     return crxConfig;
 };
 
-exports.validateUrl = function (targetUrl) {
+exports.parseUrl = function (targetUrl) {
     // Bad input?
     if (!targetUrl) {
         throw new Error('Please provide a URL to continue.');
@@ -75,6 +75,7 @@ exports.validateUrl = function (targetUrl) {
     if (!parsedUrl || !parsedUrl.protocol || parsedUrl.protocol.indexOf('http') == -1) {
         throw new Error('Please provide a valid URL for your extension. (It must start with http(s)://)');
     }
+
     return parsedUrl;
 };
 
