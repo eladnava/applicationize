@@ -50,14 +50,12 @@ exports.buildCrxConfig = function *(targetUrl) {
         dom = yield exports.getPageDOM(crxConfig.url);
     }
     catch (exc) {
-        console.log("Failed to get page dom")
+        return crxConfig;
     }
 
-    if (dom) {
-        crxConfig.title = exports.getExtensionTitle(dom, crxConfig.parsedUrl.host);
+	crxConfig.title = exports.getExtensionTitle(dom, crxConfig.parsedUrl.host);
 
-        crxConfig.icon = exports.getExtensionIcon(dom, crxConfig.parsedUrl.host);
-    }
+	crxConfig.icon = exports.getExtensionIcon(dom, crxConfig.parsedUrl.host);
 
     return crxConfig;
 };
