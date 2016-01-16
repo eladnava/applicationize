@@ -42,11 +42,12 @@ exports.buildCrxConfig = function *(targetUrl) {
         filename: parsedUrl.hostname + '.crx'
     };
 
+    var dom;
 
     // Execute GET request to provided URL
     // May fail for internal URLs, continue anyway
     try {
-        var dom = yield exports.getPageDom(crxConfig.url);
+        dom = yield exports.getPageDOM(crxConfig.url);
     }
     catch (exc) {
         console.log("Failed to get page dom")
@@ -114,7 +115,7 @@ exports.getExtensionIcon = function (dom, host) {
     return icon;
 };
 
-exports.getPageDom = function* (url) {
+exports.getPageDOM = function* (url) {
 
     // Prepare request (send fake browser user-agent header)
     var req = {
