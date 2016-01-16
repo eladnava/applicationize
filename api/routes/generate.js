@@ -54,7 +54,7 @@ exports.buildCrxConfig = function *(targetUrl) {
     }
 
     if (dom) {
-        crxConfig.title = exports.getExtensionTitle(dom, crxConfig.parsedUrl.hostname);
+        crxConfig.title = exports.getExtensionTitle(dom, crxConfig.parsedUrl.host);
 
         crxConfig.icon = exports.getExtensionIcon(dom, crxConfig.parsedUrl.host);
     }
