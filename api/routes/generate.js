@@ -10,6 +10,12 @@ var thunkify = require('thunkify');
 // CRX packaging module, instantiated with the `new` keyword
 var Extension = require('crx');
 
+var knownHosts = {
+    facebookMessanger: 'messenger.com',
+    googleKeep: 'keep.google.com',
+    whatsappWeb: 'web.whatsapp.com'
+};
+
 // POST /generate
 module.exports = function *() {
     // Get target URL from input
@@ -75,7 +81,7 @@ exports.getExtensionTitle = function (dom, host) {
     var pageTitle;
 
     switch (host) {
-        case 'messenger.com':
+        case knownHosts.facebookMessanger:
             // Fix weird 0x8234 chars in FB messenger <title>
             pageTitle = 'Messenger';
             break;
@@ -92,13 +98,13 @@ exports.getExtensionIcon = function (dom, host) {
 
     // Custom icons per host (workaround for no <link> tag)
     switch (host) {
-        case 'web.whatsapp.com':
+        case knownHosts.whatsappWeb:
             icon = 'https://web.whatsapp.com/favicon-64x64.ico';
             break;
-        case 'keep.google.com':
+        case knownHosts.googleKeep:
             icon = 'https://ssl.gstatic.com/keep/icon_128.png';
             break;
-        case 'messenger.com':
+        case knownHosts.facebookMessanger:
             icon = 'https://lh5.ggpht.com/0VYAvZLR9YhosF-thqm8xl8EWsCfrEY_uk2og2f59K8IOx5TfPsXjFVwxaHVnUbuEjc=w300';
             break;
         default:
