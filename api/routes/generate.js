@@ -78,7 +78,7 @@ exports.buildCrxConfig = function *(targetUrl) {
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
      
     // Custom icons per host (workaround for no <link> tag)
-    switch(crxConfig.parsedUrl.host) {
+    switch(crxConfig.parsedUrl.host.replace('www.', '')) {
         case 'web.whatsapp.com':
             crxConfig.icon = 'https://web.whatsapp.com/favicon-64x64.ico';
             break;
@@ -89,6 +89,9 @@ exports.buildCrxConfig = function *(targetUrl) {
             // Fix weird 0x8234 chars in FB messenger <title> 
             crxConfig.title = 'Messenger'
             crxConfig.icon = 'https://lh5.ggpht.com/0VYAvZLR9YhosF-thqm8xl8EWsCfrEY_uk2og2f59K8IOx5TfPsXjFVwxaHVnUbuEjc=w300';
+            break;
+        case 'youtube.com':
+            crxConfig.icon = 'https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png';
             break;
     }
     
