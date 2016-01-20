@@ -46,6 +46,9 @@ exports.buildCrxConfig = function *(targetUrl) {
         title: parsedUrl.hostname,
         filename: parsedUrl.hostname + '.crx'
     };
+    
+    // Normalize hostname for custom use-cases
+    crxConfig.host = parsedUrl.hostname.toLowerCase().replace('www.', ''); 
 
     // Prepare request (send fake browser user-agent header)
     var req = {
@@ -76,22 +79,12 @@ exports.buildCrxConfig = function *(targetUrl) {
     
     // Extract .crx icon from page's shortcut-icon <link> element
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
-     
-    // Custom icons per host (workaround for no <link> tag)
-    switch(crxConfig.parsedUrl.host.replace('www.', '')) {
-        case 'web.whatsapp.com':
-            crxConfig.icon = 'https://web.whatsapp.com/favicon-64x64.ico';
-            break;
-        case 'keep.google.com':
-            crxConfig.icon = 'https://ssl.gstatic.com/keep/icon_128.png';
-            break;
+    
+    // Handle custom use-cases per hostname
+    switch(crxConfig.host) {
         case 'messenger.com':
             // Fix weird 0x8234 chars in FB messenger <title> 
             crxConfig.title = 'Messenger'
-            crxConfig.icon = 'https://lh5.ggpht.com/0VYAvZLR9YhosF-thqm8xl8EWsCfrEY_uk2og2f59K8IOx5TfPsXjFVwxaHVnUbuEjc=w300';
-            break;
-        case 'youtube.com':
-            crxConfig.icon = 'https://www.gstatic.com/images/icons/material/product/2x/youtube_64dp.png';
             break;
     }
     
@@ -117,16 +110,21 @@ exports.generateCrx = function* (crxConfig) {
     
     // Configure the launch behavior of the extension to the specfied URL
     crx.manifest.app.launch.web_url = crxConfig.url;
-    
-    // Got a favicon?
-    if (crxConfig.icon) {
-        // Download it and overwrite default icon
-        yield exports.downloadIcon(crxConfig, crx);
-    }
-    else
-    {
-        // Set a placeholder icon instead
-        yield exports.setPlaceholderIcon(crxConfig, crx);
+
+    // Override extension icon if we prepared one for this host
+    yield exports.overrideIconIfExists(crxConfig, crx);
+
+    // Only continue if we haven't overriden the icon
+    if (!crxConfig.iconOverriden) {
+        // Got a favicon from the host's HTML?
+        if (crxConfig.icon) {
+            // Download it and overwrite default icon
+            yield exports.downloadIcon(crxConfig, crx);
+        }
+        else {
+            // Set a placeholder icon instead (letter)
+            yield exports.setPlaceholderIcon(crxConfig, crx);
+        }
     }
 
     // Pack the extension into a .crx and return its buffer
@@ -148,6 +146,29 @@ exports.downloadIcon = function*(crxConfig, crx) {
         // Download it
         yield exports.downloadFile(absoluteIconUrl, downloadPath);
     }
+}
+
+exports.overrideIconIfExists = function*(crxConfig, crx) {
+    // Build path to override icon
+    var iconPath = join(__dirname, '../assets/icons/' + crxConfig.host + '.png');
+    
+    try {
+        // Check if icon exists
+        fs.accessSync(iconPath, fs.F_OK);
+    }
+    catch (e) {
+        // No such file
+        return;
+    }
+
+    // Set target copy path as current extension icon's path
+    var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
+    
+    // Copy the local file and override extension's default icon
+    yield exports.copyLocalFile(iconPath, copyToPath);
+    
+    // Avoid downloading the original favicon or setting a placeholder one
+    crxConfig.iconOverriden = true;
 }
 
 exports.setPlaceholderIcon = function*(crxConfig, crx) {
