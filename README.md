@@ -34,3 +34,7 @@ Run the following commands in the root directory of this project:
 $ npm install
 $ npm start
 ```
+
+License
+---
+Apache 2.0
