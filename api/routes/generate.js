@@ -26,7 +26,7 @@ module.exports = function *() {
 };
 
 exports.buildCrxConfig = function *(targetUrl) {
-
+    // Parse and validate the input URL (may throw an error)
     var parsedUrl = exports.parseUrl(targetUrl);
 
     // Prepare crx object with default values
@@ -54,7 +54,11 @@ exports.buildCrxConfig = function *(targetUrl) {
     // Extract .crx icon from page's shortcut-icon <link> element
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
 
+    // Get extension title and handle custom cases
     crxConfig.title = exports.getCrxTitle(dom, crxConfig);
+    
+    // Return the extension configuration object
+    return crxConfig;
 };
 
 exports.getCrxTitle = function (dom, crxConfig) {
