@@ -24,7 +24,7 @@ module.exports = function *() {
     
     // Send it to the browser (save to disk)
     yield exports.sendCrx(this, crxConfig, crxBuffer);
-}
+};
 
 exports.buildCrxConfig = function *(targetUrl) {
 
@@ -52,15 +52,19 @@ exports.buildCrxConfig = function *(targetUrl) {
     catch (exc) {
         return crxConfig;
     }
-     
 
+    // Extract extension title from the dom's <title> tag
+    crxConfig.title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
+
+    // Extract .crx icon from page's shortcut-icon <link> element
+    crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
 
     // Handle custom use-cases per hostname
     switch(crxConfig.host) {
 
         case 'messenger.com':
             // Fix weird 0x8234 chars in FB messenger <title> 
-            crxConfig.title = 'Messenger'
+            crxConfig.title = 'Messenger';
             break;
     }
 
@@ -131,14 +135,13 @@ exports.generateCrx = function* (crxConfig) {
             yield exports.setPlaceholderIcon(crxConfig, crx);
         }
     }
-    }
 
     // Pack the extension into a .crx and return its buffer
     var crxBuffer = yield crx.pack();
     
     // Return buffer
     return crxBuffer;
-}
+};
 
 exports.downloadIcon = function*(crxConfig, crx) {
     // Convert relative icon path to absolute
@@ -152,7 +155,7 @@ exports.downloadIcon = function*(crxConfig, crx) {
         // Download it
         yield exports.downloadFile(absoluteIconUrl, downloadPath);
     }
-}
+};
 
 exports.overrideIconIfExists = function*(crxConfig, crx) {
     // Build path to override icon
@@ -175,7 +178,7 @@ exports.overrideIconIfExists = function*(crxConfig, crx) {
     
     // Avoid downloading the original favicon or setting a placeholder one
     crxConfig.iconOverriden = true;
-}
+};
 
 exports.setPlaceholderIcon = function*(crxConfig, crx) {
     // Grab first char (hopefully a letter)
@@ -194,7 +197,7 @@ exports.setPlaceholderIcon = function*(crxConfig, crx) {
     
     // Copy the local file and override extension's default icon
     yield exports.copyLocalFile(copyFromPath, copyToPath);
-}
+};
 
 exports.sendCrx = function*(request, crxConfig, crxBuffer) {
     // Set content-type to .crx extension mime type
@@ -205,7 +208,7 @@ exports.sendCrx = function*(request, crxConfig, crxBuffer) {
 
     // Set the request body to the .crx file buffer
     request.body = crxBuffer;
-}
+};
 
 exports.downloadFile = function(url, filePath) {
     // Promisify the request
