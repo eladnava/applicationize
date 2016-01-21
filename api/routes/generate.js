@@ -26,20 +26,6 @@ module.exports = function *() {
     yield exports.sendCrx(this, crxConfig, crxBuffer);
 };
 
-exports.getCrxTitle = function (dom, crxConfig) {
-
-    // Extract extension title from the dom's <title> tag
-    var title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
-
-    // Handle custom use-cases per hostname
-    switch (crxConfig.host) {
-        case 'messenger.com':
-            // Fix weird 0x8234 chars in FB messenger <title>
-            title = 'Messenger';
-            break;
-    }
-    return title;
-};
 exports.buildCrxConfig = function *(targetUrl) {
 
     var parsedUrl = exports.parseUrl(targetUrl);
@@ -71,6 +57,22 @@ exports.buildCrxConfig = function *(targetUrl) {
 
     crxConfig.title = exports.getCrxTitle(dom, crxConfig);
 };
+
+exports.getCrxTitle = function (dom, crxConfig) {
+
+    // Extract extension title from the dom's <title> tag
+    var title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
+
+    // Handle custom use-cases per hostname
+    switch (crxConfig.host) {
+        case 'messenger.com':
+            // Fix weird 0x8234 chars in FB messenger <title>
+            title = 'Messenger';
+            break;
+    }
+    return title;
+};
+
 
 exports.parseUrl = function (targetUrl) {
     // Bad input?
