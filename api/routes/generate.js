@@ -10,7 +10,6 @@ var thunkify = require('thunkify');
 // CRX packaging module, instantiated with the `new` keyword
 var Extension = require('crx');
 
-
 // POST /generate
 module.exports = function *() {
     // Get target URL from input
@@ -108,7 +107,7 @@ exports.getPageDOM = function* (url) {
 };
 
 exports.generateCrx = function* (crxConfig) {
-    // Generate pem certificate    
+    // Generate pem certificate
     var cert = yield thunkify(pem.createCertificate)({days: 365 * 10, selfSigned: true});
 
     // Init new .crx extension with our private key
