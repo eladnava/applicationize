@@ -15,17 +15,31 @@ var Extension = require('crx');
 module.exports = function *() {
     // Get target URL from input
     var url = this.request.body.url;
-    
+
     // Build .crx config for the provided URL
     var crxConfig = yield exports.buildCrxConfig(url);
-    
+
     // Generate the .crx file based on the config
     var crxBuffer = yield exports.generateCrx(crxConfig);
-    
+
     // Send it to the browser (save to disk)
     yield exports.sendCrx(this, crxConfig, crxBuffer);
 };
 
+exports.getCrxTitle = function (dom, crxConfig) {
+
+    // Extract extension title from the dom's <title> tag
+    var title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
+
+    // Handle custom use-cases per hostname
+    switch (crxConfig.host) {
+        case 'messenger.com':
+            // Fix weird 0x8234 chars in FB messenger <title>
+            title = 'Messenger';
+            break;
+    }
+    return title;
+};
 exports.buildCrxConfig = function *(targetUrl) {
 
     var parsedUrl = exports.parseUrl(targetUrl);
@@ -37,10 +51,9 @@ exports.buildCrxConfig = function *(targetUrl) {
         title: parsedUrl.hostname,
         filename: parsedUrl.hostname + '.crx'
     };
-    
-    // Normalize hostname for custom use-cases
-    crxConfig.host = parsedUrl.hostname.toLowerCase().replace('www.', ''); 
 
+    // Normalize hostname for custom use-cases
+    crxConfig.host = parsedUrl.hostname.toLowerCase().replace('www.', '');
 
     var dom;
 
@@ -53,22 +66,12 @@ exports.buildCrxConfig = function *(targetUrl) {
         return crxConfig;
     }
 
-    // Extract extension title from the dom's <title> tag
-    crxConfig.title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
-
     // Extract .crx icon from page's shortcut-icon <link> element
     crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
 
-    // Handle custom use-cases per hostname
-    switch(crxConfig.host) {
-
-        case 'messenger.com':
-            // Fix weird 0x8234 chars in FB messenger <title> 
-            crxConfig.title = 'Messenger';
-            break;
-    }
-
+    crxConfig.title = exports.getCrxTitle(dom, crxConfig);
 };
+
 exports.parseUrl = function (targetUrl) {
     // Bad input?
     if (!targetUrl) {
@@ -85,6 +88,7 @@ exports.parseUrl = function (targetUrl) {
 
     return parsedUrl;
 };
+
 exports.getPageDOM = function* (url) {
 
     // Prepare request (send fake browser user-agent header)
@@ -110,13 +114,13 @@ exports.generateCrx = function* (crxConfig) {
 
     // Load extension manifest and default icon
     yield crx.load(join(__dirname, "../lib/extension/files"));
-    
+
     // Set extension title to extension URL's <title>
     crx.manifest.name = crxConfig.title;
-    
+
     // Ask for permission to access the specified URL
     crx.manifest.app.urls.push(crxConfig.url);
-    
+
     // Configure the launch behavior of the extension to the specfied URL
     crx.manifest.app.launch.web_url = crxConfig.url;
 
@@ -138,7 +142,7 @@ exports.generateCrx = function* (crxConfig) {
 
     // Pack the extension into a .crx and return its buffer
     var crxBuffer = yield crx.pack();
-    
+
     // Return buffer
     return crxBuffer;
 };
@@ -146,12 +150,12 @@ exports.generateCrx = function* (crxConfig) {
 exports.downloadIcon = function*(crxConfig, crx) {
     // Convert relative icon path to absolute
     var absoluteIconUrl = url.resolve(crxConfig.url, crxConfig.icon);
-   
+
     // Resolve succeeded?
     if (absoluteIconUrl) {
         // Set download path as current extension icon's path
         var downloadPath = crx.path + "/" + crx.manifest.icons['128'];
-        
+
         // Download it
         yield exports.downloadFile(absoluteIconUrl, downloadPath);
     }
@@ -160,7 +164,7 @@ exports.downloadIcon = function*(crxConfig, crx) {
 exports.overrideIconIfExists = function*(crxConfig, crx) {
     // Build path to override icon
     var iconPath = join(__dirname, '../assets/icons/' + crxConfig.host + '.png');
-    
+
     try {
         // Check if icon exists
         fs.accessSync(iconPath, fs.F_OK);
@@ -172,10 +176,10 @@ exports.overrideIconIfExists = function*(crxConfig, crx) {
 
     // Set target copy path as current extension icon's path
     var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
-    
+
     // Copy the local file and override extension's default icon
     yield exports.copyLocalFile(iconPath, copyToPath);
-    
+
     // Avoid downloading the original favicon or setting a placeholder one
     crxConfig.iconOverriden = true;
 };
@@ -183,18 +187,18 @@ exports.overrideIconIfExists = function*(crxConfig, crx) {
 exports.setPlaceholderIcon = function*(crxConfig, crx) {
     // Grab first char (hopefully a letter)
     var letter = crxConfig.parsedUrl.hostname.substring(0, 1).toUpperCase();
-    
+
     // Not an English letter?
-    if (! letter.match(/[A-Z]/) ) {
+    if (!letter.match(/[A-Z]/)) {
         return;
     }
-    
+
     // Build path to placeholder letter icon
     var copyFromPath = join(__dirname, '../lib/extension/icons/fallback/' + letter + '.png');
 
     // Set target copy path as current extension icon's path
     var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
-    
+
     // Copy the local file and override extension's default icon
     yield exports.copyLocalFile(copyFromPath, copyToPath);
 };
@@ -202,7 +206,7 @@ exports.setPlaceholderIcon = function*(crxConfig, crx) {
 exports.sendCrx = function*(request, crxConfig, crxBuffer) {
     // Set content-type to .crx extension mime type
     request.set('content-type', 'application/x-chrome-extension');
-    
+
     // Set extension filename
     request.set('content-disposition', 'attachment; filename=' + crxConfig.filename);
 
@@ -210,19 +214,19 @@ exports.sendCrx = function*(request, crxConfig, crxBuffer) {
     request.body = crxBuffer;
 };
 
-exports.downloadFile = function(url, filePath) {
+exports.downloadFile = function (url, filePath) {
     // Promisify the request
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         try {
             // Create write stream
             var stream = fs.createWriteStream(filePath);
-            
+
             // Wait for finish event
-            stream.on('finish', function() {
+            stream.on('finish', function () {
                 // Resolve the promise
                 return resolve(true);
             });
-            
+
             // Pipe the request to a file
             return request(url).pipe(stream);
         } catch (e) {
@@ -232,19 +236,19 @@ exports.downloadFile = function(url, filePath) {
     });
 };
 
-exports.copyLocalFile = function(from, to) {
+exports.copyLocalFile = function (from, to) {
     // Promisify the request
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         try {
             // Create write stream
             var writeStream = fs.createWriteStream(to);
-            
+
             // Wait for finish event
-            writeStream.on('finish', function() {
+            writeStream.on('finish', function () {
                 // Resolve the promise
                 return resolve(true);
             });
-            
+
             // Pipe the "from" stream into the "to" stream
             fs.createReadStream(from).pipe(writeStream);
         } catch (e) {
