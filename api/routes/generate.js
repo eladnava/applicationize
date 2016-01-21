@@ -72,6 +72,10 @@ exports.getCrxTitle = function (dom, crxConfig) {
             // Fix weird 0x8234 chars in FB messenger <title>
             title = 'Messenger';
             break;
+        case 'keep.google.com':
+            // Avoid "Sign In - Google Accounts"
+            title = 'Google Keep';
+            break;
     }
     return title;
 };
