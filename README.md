@@ -31,8 +31,8 @@ Running Locally
 Run the following commands in the root directory of this project:
 
 ```shell
-$ npm install
-$ npm start
+npm install
+npm start
 ```
 
 License
