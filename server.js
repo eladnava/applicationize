@@ -1,10 +1,9 @@
-// Dependencies
-var http        = require('http')
-  , koa         = require('koa')
-  , serve       = require('koa-static')
-  , bodyParser  = require('koa-bodyparser');
+var koa = require('koa');
+var http = require('http');
+var serve = require('koa-static');
+var bodyParser = require('koa-bodyparser');
 
-// Custom Koa middleware
+// Koa middleware
 var router = require('./api/router');
 var error = require('./api/lib/middleware/error');
 

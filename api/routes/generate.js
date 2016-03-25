@@ -52,7 +52,7 @@ exports.buildCrxConfig = function *(targetUrl) {
     }
 
     // Extract .crx icon from page's shortcut-icon <link> element
-    crxConfig.icon = dom('link[rel="icon"], link[rel="shortcut icon"]').attr('href');
+    crxConfig.icon = exports.getCrxIcon(dom);
 
     // Get extension title and handle custom cases
     crxConfig.title = exports.getCrxTitle(dom, crxConfig);
@@ -60,6 +60,31 @@ exports.buildCrxConfig = function *(targetUrl) {
     // Return the extension configuration object
     return crxConfig;
 };
+
+exports.getCrxIcon = function(dom) {
+    // Shortcut icon selectors (first ones are the highest quality)
+    var selectors = [
+        'link[rel="fluid-icon"]',
+        'link[rel="apple-touch-icon"]',
+        'link[rel="icon"]',
+        'link[rel="shortcut icon"]'
+    ];
+    
+    // Traverse selectors, find first one that exists
+    for (var i in selectors) {
+        // Get element by tag + class name
+        var element = dom(selectors[i]);
+        
+        // Found it?
+        if (element.length > 0 ) {
+            // Return <link>'s href attribute
+            return element.attr('href');
+        }
+    }
+    
+    // No go, generate a custom icon
+    return undefined;
+}
 
 exports.getCrxTitle = function (dom, crxConfig) {
 
