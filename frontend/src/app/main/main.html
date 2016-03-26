@@ -8,42 +8,39 @@
                     <!--img src="/assets/images/logo.png" /-->
                 </a>
             </div>
-            
+
             <!-- Fork on GitHub -->
             <a href="https://github.com/eladnava/applicationize" target="_blank">
                 <img class="fork-github" src="assets/images/fork.png" alt="Fork on GitHub">
             </a>
-            
+
             <!-- Landing page -->
             <div class="landing-page" layout-align="center center" layout="column">
-                
+
                 <!-- Slogan -->
                 <div class="slogan">
                     Applicationize your favorite web apps
                 </div>
-                
+
                 <!-- Instructions -->
                 <div class="instructions">
-                    Enter URL 
-                    <img src="assets/images/arrow.png" class="instruction-arrow" />
-                    Download Chrome Extension
-                    <img src="assets/images/arrow.png" class="instruction-arrow" />
-                    Install &amp; Enjoy
-                    (<a href="http://www.simplehelp.net/2012/08/19/how-to-install-extensions-that-arent-from-the-chrome-web-store/" target="_blank">Instructions</a>)
+                    Enter URL
+                    <img src="assets/images/arrow.png" class="instruction-arrow" /> Download Chrome Extension
+                    <img src="assets/images/arrow.png" class="instruction-arrow" /> Install &amp; Enjoy (
+                    <a href="http://www.simplehelp.net/2012/08/19/how-to-install-extensions-that-arent-from-the-chrome-web-store/" target="_blank">Instructions</a>)
                 </div>
-                
-    
+
                 <!-- Loading -->
                 <div class="spinner" ng-show="loading">
                     <div class="double-bounce1"></div>
                     <div class="double-bounce2"></div>
                 </div>
-                
+
                 <!-- Generate form -->
                 <div class="generate-container" ng-class="{'hidden': loading}">
-                    <form method="post" action="#" ng-submit="formSubmit()" set-generate-action>
+                    <form method="post" action="#" ng-submit="formSubmit($event)" set-generate-action>
                         <div class="generate-url">
-                            <input type="text" name="url" placeholder="Web App URL (https://example.com/)" flex="80" autofocus />
+                            <input type="text" name="url" ng-model="url" placeholder="Web App URL (https://example.com/)" flex="80" autofocus />
                         </div>
                         <div class="generate-submit">
                             <!-- Submit -->
@@ -53,11 +50,10 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Contact -->
         <div class="contact">
             &copy; 2016 Applicationize. All rights reserved.
         </div>
     </div>
 </div>
-

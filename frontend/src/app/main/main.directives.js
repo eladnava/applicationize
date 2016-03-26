@@ -4,8 +4,8 @@
 angular.module('frontend')
     .directive('setGenerateAction', [function () {
         return {
-            link: function (scope, element, attrs) {
+            link: function (scope, element) {
                 $(element).attr('action', scope.getGenerateAPIEndpoint());
             }
-        }
+        };
     }]);

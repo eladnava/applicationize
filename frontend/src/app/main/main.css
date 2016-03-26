@@ -1,5 +1,4 @@
-.banner
-{
+.banner {
     background-attachment: fixed;
     background-color: #1C1C1C;
     background-image: url("/assets/images/banner.jpg");
@@ -9,9 +8,7 @@
     position: relative;
     z-index: 21;
 }
-
-.slogan
-{
+.slogan {
     color: #fff;
     font-weight: 200;
     font-size: 55px;
@@ -19,22 +16,19 @@
     text-align: center;
     letter-spacing: -0.025em;
 }
-
-.overlay
-{
+.overlay {
     background: -moz-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.25));
     background: -webkit-linear-gradient(top, rgba(23, 24, 32, 0.95), rgba(23, 24, 32, 0.25));
 }
-
-.overlay, .landing-page, .banner
-{
+.overlay,
+.landing-page,
+.banner {
     min-height: 100vh;
+    transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
 }
-
-.logo
-{
+.logo {
     color: #fff;
     top: 0;
     left: 0;
@@ -43,62 +37,45 @@
     margin: 5px 10px;
     position: absolute;
 }
-
-.logo img
-{
+.logo img {
     height: 40px;
     vertical-align: -17px;
+    transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
 }
-
-
-.instructions
-{
+.instructions {
     color: #fff;
     font-size: 17px;
     text-align: center;
     line-height: 35px;
     margin: 10px 30px 70px;
 }
-
-.instructions a
-{
+.instructions a {
     color: #fff;
     border-bottom: 1px dotted rgba(255, 255, 255, 0.6);
     text-decoration: none;
 }
-
-.instructions .instruction-arrow
-{
+.instructions .instruction-arrow {
     opacity: 0.6;
     margin: 0 8px 0;
     height: 24px;
     vertical-align: -6px;
     display: inline-block;
 }
-
-.generate-container
-{
+.generate-container {
     opacity: 1.0;
+    transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
 }
-
-.generate-container.hidden
-{
-    opacity: 0;
-}
-
-.generate-url
-{
-    padding: 13px;  
-    border-radius: 3px; 
+.generate-container.hidden { opacity: 0 }
+.generate-url {
+    padding: 13px;
+    border-radius: 3px;
     background: rgba(0, 0, 0, 0.3);
 }
-
-.generate-url input
-{
+.generate-url input {
     height: 45px;
     width: 480px;
     color: #000;
@@ -108,27 +85,17 @@
     padding: 12px 12px 15px;
     border: 1px solid rgba(0, 0, 0, 0.4);
 }
-
-::-webkit-input-placeholder 
-{
+::-webkit-input-placeholder { color: rgba(0, 0, 0, 0.4) }
+:-moz-placeholder {
     color: rgba(0, 0, 0, 0.4);
+    opacity: 1;
 }
-
-:-moz-placeholder 
-{
-    color: rgba(0, 0, 0, 0.4);
-    opacity:  1;
-}
-
-.generate-submit
-{
+.generate-submit {
     height: 110px;
     text-align: center;
     margin: 25px 0 0 0;
 }
-
-.generate-submit input
-{
+.generate-submit input {
     color: #fff;
     font-size: 14px;
     font-weight: 700;
@@ -138,31 +105,22 @@
     background: transparent;
     text-transform: uppercase;
     border: 2px solid #F9F9F9;
+    transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
 }
-
-.generate-submit input:hover
-{
+.generate-submit input:hover {
     color: #000;
     background: #fff;
 }
-
-.loading-container.md-default-theme
-{
-    background: #ebebeb;
-}
-
-.fork-github
-{
-    top: 0; 
-    right: 0; 
+.loading-container.md-default-theme { background: #ebebeb }
+.fork-github {
+    top: 0;
+    right: 0;
     border: 0;
-    position: absolute; 
+    position: absolute;
 }
-
-.loading-container
-{
+.loading-container {
     top: 0;
     left: 0;
     right: 0;
@@ -172,9 +130,7 @@
     position: absolute;
     margin: auto auto;
 }
-
-.contact
-{
+.contact {
     left: 0;
     right: 0;
     bottom: 0;
@@ -187,34 +143,14 @@
     text-align: center;
     background: rgba(0, 0, 0, 0.6);
 }
-
-.contact a
-{
+.contact a {
     color: #fff;
     text-decoration: none;
 }
-
 /* Reponsive Fixes */
-
-@media(max-width: 500px)
-{
-    .main-container
-    {
-        padding: 2em;
-    }
-
-    .slogan
-    {
-        font-size: 45px;
-    }
-    
-    .instructions
-    {
-        margin-bottom: 20px;
-    }
-
-    .generate-url input
-    {
-        width: 250px;
-    }
+@media (max-width: 500px) { 
+    .main-container { padding: 2em }
+    .slogan { font-size: 45px }
+    .instructions { margin-bottom: 20px }
+    .generate-url input { width: 250px }
 }
