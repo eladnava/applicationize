@@ -14,7 +14,7 @@ var createCertificate = thunkify(pem.createCertificate);
 var Extension = require('crx');
 
 // POST /generate
-module.exports = function *() {
+module.exports = function* () {
     // Get target URL from input
     var url = this.request.body.url;
 
@@ -28,7 +28,7 @@ module.exports = function *() {
     yield exports.sendCrx(this, crxConfig, crxBuffer);
 };
 
-exports.buildCrxConfig = function *(targetUrl) {
+exports.buildCrxConfig = function* (targetUrl) {
     // Parse and validate the input URL (may throw an error)
     var parsedUrl = exports.parseUrl(targetUrl);
 
@@ -59,7 +59,7 @@ exports.buildCrxConfig = function *(targetUrl) {
 
     // Get extension title and handle custom cases
     crxConfig.title = exports.getCrxTitle(dom, crxConfig);
-    
+
     // Return the extension configuration object
     return crxConfig;
 };
@@ -72,24 +72,24 @@ exports.getCrxIcon = function(dom) {
         'link[rel="icon"]',
         'link[rel="shortcut icon"]'
     ];
-    
+
     // Traverse selectors, find first one that exists
     for (var i in selectors) {
         // Get element by tag + class name
         var element = dom(selectors[i]);
-        
+
         // Found it?
-        if (element.length > 0 ) {
+        if (element.length > 0) {
             // Return <link>'s href attribute
             return element.attr('href');
         }
     }
-    
+
     // No go, generate a custom icon
     return undefined;
 }
 
-exports.getCrxTitle = function (dom, crxConfig) {
+exports.getCrxTitle = function(dom, crxConfig) {
 
     // Extract extension title from the dom's <title> tag
     var title = dom('title').text().trim() || crxConfig.parsedUrl.hostname;
@@ -109,7 +109,7 @@ exports.getCrxTitle = function (dom, crxConfig) {
 };
 
 
-exports.parseUrl = function (targetUrl) {
+exports.parseUrl = function(targetUrl) {
     // Bad input?
     if (!targetUrl) {
         throw new Error('Please provide a URL to continue.');
@@ -134,7 +134,7 @@ exports.getPageDOM = function* (url) {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
         }
     };
-    
+
     // Actually execute the request
     var response = yield request(req);
 
@@ -144,13 +144,13 @@ exports.getPageDOM = function* (url) {
 
 exports.generateCrx = function* (crxConfig) {
     // Generate pem certificate
-    var cert = yield createCertificate({days: 365 * 10, selfSigned: true});
+    var cert = yield createCertificate({ days: 365 * 10, selfSigned: true });
 
     // Init new .crx extension with our private key
-    var crx = new Extension({privateKey: cert.clientKey});
+    var crx = new Extension({ privateKey: cert.clientKey });
 
     // Load extension manifest and default icon
-    yield crx.load(path.join(__dirname, "../assets/crx"));
+    yield crx.load(path.join(__dirname, '../assets/crx'));
 
     // Set extension title to extension URL's <title>
     crx.manifest.name = crxConfig.title;
@@ -184,21 +184,21 @@ exports.generateCrx = function* (crxConfig) {
     return crxBuffer;
 };
 
-exports.downloadIcon = function*(crxConfig, crx) {
+exports.downloadIcon = function* (crxConfig, crx) {
     // Convert relative icon path to absolute
     var absoluteIconUrl = url.resolve(crxConfig.url, crxConfig.icon);
 
     // Resolve succeeded?
     if (absoluteIconUrl) {
         // Set download path as current extension icon's path
-        var downloadPath = crx.path + "/" + crx.manifest.icons['128'];
+        var downloadPath = crx.path + '/' + crx.manifest.icons['128'];
 
         // Download it
         yield exports.downloadFile(absoluteIconUrl, downloadPath);
     }
 };
 
-exports.overrideIconIfExists = function*(crxConfig, crx) {
+exports.overrideIconIfExists = function* (crxConfig, crx) {
     // Build path to override icon
     var iconPath = path.join(__dirname, '../assets/icons/' + crxConfig.host + '.png');
 
@@ -212,7 +212,7 @@ exports.overrideIconIfExists = function*(crxConfig, crx) {
     }
 
     // Set target copy path as current extension icon's path
-    var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
+    var copyToPath = crx.path + '/' + crx.manifest.icons['128'];
 
     // Copy the local file and override extension's default icon
     yield exports.copyLocalFile(iconPath, copyToPath);
@@ -221,7 +221,7 @@ exports.overrideIconIfExists = function*(crxConfig, crx) {
     crxConfig.iconOverriden = true;
 };
 
-exports.setPlaceholderIcon = function*(crxConfig, crx) {
+exports.setPlaceholderIcon = function* (crxConfig, crx) {
     // Grab first char (hopefully a letter)
     var letter = crxConfig.parsedUrl.hostname.substring(0, 1).toUpperCase();
 
@@ -234,13 +234,13 @@ exports.setPlaceholderIcon = function*(crxConfig, crx) {
     var copyFromPath = path.join(__dirname, '../assets/icons/fallback/' + letter + '.png');
 
     // Set target copy path as current extension icon's path
-    var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
+    var copyToPath = crx.path + '/' + crx.manifest.icons['128'];
 
     // Copy the local file and override extension's default icon
     yield exports.copyLocalFile(copyFromPath, copyToPath);
 };
 
-exports.sendCrx = function*(request, crxConfig, crxBuffer) {
+exports.sendCrx = function* (request, crxConfig, crxBuffer) {
     // Set content-type to .crx extension mime type
     request.set('content-type', 'application/x-chrome-extension');
 
@@ -251,15 +251,15 @@ exports.sendCrx = function*(request, crxConfig, crxBuffer) {
     request.body = crxBuffer;
 };
 
-exports.downloadFile = function (url, filePath) {
+exports.downloadFile = function(url, filePath) {
     // Promisify the request
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         try {
             // Create write stream
             var stream = fs.createWriteStream(filePath);
 
             // Wait for finish event
-            stream.on('finish', function () {
+            stream.on('finish', function() {
                 // Resolve the promise
                 return resolve(true);
             });
@@ -273,15 +273,15 @@ exports.downloadFile = function (url, filePath) {
     });
 };
 
-exports.copyLocalFile = function (from, to) {
+exports.copyLocalFile = function(from, to) {
     // Promisify the request
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         try {
             // Create write stream
             var writeStream = fs.createWriteStream(to);
 
             // Wait for finish event
-            writeStream.on('finish', function () {
+            writeStream.on('finish', function() {
                 // Resolve the promise
                 return resolve(true);
             });
