@@ -8,8 +8,8 @@ angular.module('frontend').service('API', ['$http', '$q', '$location', function(
                 return 'http://localhost:3000';
             }
 
-            // Otherwise, return production endpoint
-            return 'http://applicationize.com';
+            // Otherwise, return production endpoint (HTTPS)
+            return 'https://applicationize.com';
         }
     };
 }]);
