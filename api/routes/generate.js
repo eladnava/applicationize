@@ -4,8 +4,11 @@ var pem = require('pem');
 var path = require('path');
 var https = require('https');
 var cheerio = require('cheerio');
-var request = require('request');
 var thunkify = require('thunkify');
+
+// Convert callbacks to thunks
+var request = thunkify(require('request'));
+var createCertificate = thunkify(pem.createCertificate);
 
 // CRX packaging module, instantiated with the `new` keyword
 var Extension = require('crx');
@@ -124,7 +127,6 @@ exports.parseUrl = function (targetUrl) {
 };
 
 exports.getPageDOM = function* (url) {
-
     // Prepare request (send fake browser user-agent header)
     var req = {
         url: url,
@@ -132,8 +134,9 @@ exports.getPageDOM = function* (url) {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
         }
     };
-
-    var response = yield thunkify(request)(req);
+    
+    // Actually execute the request
+    var response = yield request(req);
 
     // Load DOM into Cheerio (HTML parser)
     return cheerio.load(response[0].body);
@@ -141,7 +144,7 @@ exports.getPageDOM = function* (url) {
 
 exports.generateCrx = function* (crxConfig) {
     // Generate pem certificate
-    var cert = yield thunkify(pem.createCertificate)({days: 365 * 10, selfSigned: true});
+    var cert = yield createCertificate({days: 365 * 10, selfSigned: true});
 
     // Init new .crx extension with our private key
     var crx = new Extension({privateKey: cert.clientKey});
