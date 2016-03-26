@@ -7,7 +7,7 @@ angular.module('frontend').service("API", ['$http', '$q', '$location', function(
             // Localhost?
             if ( $location.host() == 'localhost' )
             {
-                return 'http://localhost:4000';
+                return 'http://localhost:3000';
             }
 
             // Otherwise, return production endpoint

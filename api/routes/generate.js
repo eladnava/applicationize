@@ -1,8 +1,8 @@
 var fs = require('fs');
 var url = require('url');
 var pem = require('pem');
+var path = require('path');
 var https = require('https');
-var join = require('path').join;
 var cheerio = require('cheerio');
 var request = require('request');
 var thunkify = require('thunkify');
@@ -147,7 +147,7 @@ exports.generateCrx = function* (crxConfig) {
     var crx = new Extension({privateKey: cert.clientKey});
 
     // Load extension manifest and default icon
-    yield crx.load(join(__dirname, "../lib/extension/files"));
+    yield crx.load(path.join(__dirname, "../assets/crx"));
 
     // Set extension title to extension URL's <title>
     crx.manifest.name = crxConfig.title;
@@ -197,13 +197,13 @@ exports.downloadIcon = function*(crxConfig, crx) {
 
 exports.overrideIconIfExists = function*(crxConfig, crx) {
     // Build path to override icon
-    var iconPath = join(__dirname, '../assets/icons/' + crxConfig.host + '.png');
+    var iconPath = path.join(__dirname, '../assets/icons/' + crxConfig.host + '.png');
 
     try {
         // Check if icon exists
         fs.accessSync(iconPath, fs.F_OK);
     }
-    catch (e) {
+    catch (err) {
         // No such file
         return;
     }
@@ -228,7 +228,7 @@ exports.setPlaceholderIcon = function*(crxConfig, crx) {
     }
 
     // Build path to placeholder letter icon
-    var copyFromPath = join(__dirname, '../lib/extension/icons/fallback/' + letter + '.png');
+    var copyFromPath = path.join(__dirname, '../assets/icons/fallback/' + letter + '.png');
 
     // Set target copy path as current extension icon's path
     var copyToPath = crx.path + "/" + crx.manifest.icons['128'];
