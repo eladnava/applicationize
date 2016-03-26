@@ -1,10 +1,10 @@
 var koa = require('koa');
 var http = require('http');
+var route = require('koa-route');
 var serve = require('koa-static');
 var bodyParser = require('koa-bodyparser');
 
 // Koa middleware
-var router = require('./api/router');
 var error = require('./api/lib/middleware/error');
 
 // Create koa app
@@ -15,8 +15,8 @@ app.use(error());
 app.use(bodyParser());
 app.use(serve('./frontend/dist'));
 
-// Define routes
-router(app);
+// API routes
+app.use(route.post('/generate', require('./api/routes/generate')));
 
 // Define configurable port
 var port = process.env.PORT || 4000;
