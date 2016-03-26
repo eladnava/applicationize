@@ -5,6 +5,7 @@ var serve = require('koa-static');
 var bodyParser = require('koa-bodyparser');
 
 // Koa middleware
+var https = require('./api/middleware/https');
 var error = require('./api/middleware/error');
 
 // Create koa app
@@ -12,6 +13,7 @@ var app = koa();
 
 // Koa middleware
 app.use(error());
+app.use(https());
 app.use(bodyParser());
 app.use(serve('./frontend/dist'));
 
