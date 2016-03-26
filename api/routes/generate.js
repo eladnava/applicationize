@@ -170,8 +170,8 @@ function* generateCrx(crxConfig) {
         }
     }
 
-    // Set embed.html <webview src> attribute to the target URL
-    yield setEmbedWebviewSrc(crxConfig, crx);
+    // Customize the crx's embed.html file
+    yield customizeEmbedFile(crxConfig, crx);
 
     // Pack the extension into a .crx and return its buffer
     var crxBuffer = yield crx.pack();
@@ -217,7 +217,7 @@ function* overrideIconIfExists(crxConfig, crx) {
     crxConfig.iconOverriden = true;
 };
 
-function* setEmbedWebviewSrc(crxConfig, crx) {
+function* customizeEmbedFile(crxConfig, crx) {
     // Build path to embed.html
     var embedPath = crx.path + '/' + crx.manifest.app.background.pages[0];
 
@@ -226,12 +226,12 @@ function* setEmbedWebviewSrc(crxConfig, crx) {
 
     // Load DOM into Cheerio (HTML parser)
     var $ = cheerio.load(html);
-
-    // Get webview element
-    var webview = $('webview');
     
+    // Set page title to crx title
+    $('title').text(crxConfig.title);
+
     // Set webview source to applicationized URL
-    webview.attr('src', crxConfig.url);
+    $('webview').attr('src', crxConfig.url);
 
     // Convert back to html string
     html = $.html();
