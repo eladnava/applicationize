@@ -35,10 +35,6 @@
     position: absolute;
 }
 
-.generate-page .background-image-holder {
-    background-position: 0 -200px !important;
-}
-
 ::-webkit-input-placeholder {
   text-transform: none;
 }
@@ -56,9 +52,6 @@
 }
 
 @media (max-width: 767px) {
-    .slogan-container .btn {
-        position: static;
-    }
     .text-center-mobile {
         text-align: center;
     }
