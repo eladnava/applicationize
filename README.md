@@ -24,7 +24,14 @@ Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running a
 
 That's it! Your applicationized web app is now available via your app launcher. We recommend pinning it to your application dock or system taskbar!
 
-## Running Locally
+## Contributing
+
+* If you find a bug or wish to make some kind of change, please create an issue first
+* Make sure your code conventions are in-line with the project's code style
+* Make your commits and PRs as tiny as possible - one feature or bugfix at a time
+* Write detailed commit messages, in-line with the project's commit naming conventions
+
+### Running the Server
 
 Run the following commands in the root directory of this project:
 
