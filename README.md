@@ -16,7 +16,7 @@ Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running a
 
 How to Use
 ---
-1. Go to <a href="https://applicationize.me/" target="_blank">https://applicationize.me/</a>.
+1. Go to <a href="https://applicationize.me/now" target="_blank">https://applicationize.me/now</a>.
 2. Enter a URL to any web app, such as https://web.whatsapp.com/.
 3. Press `Enter` and download the generated Chrome extension.
 4. Open a new tab and navigate to chrome://extensions/
