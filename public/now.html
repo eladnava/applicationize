@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Page Encoding -->
+        <meta charset="utf-8">
+        
+        <!-- Page Title -->
+        <title>Applicationize - Applicationizer</title>
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="img/favicon.png" />
+        
+        <!-- Mobile Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        
+        <!-- CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/theme-red.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
+        
+        <!-- Font -->
+        <link href='//fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!-- Main Container -->
+        <div class="main-container generate-page">
+            <section class="page-title page-title-1 image-bg overlay parallax">
+                <!-- Background -->
+                <div class="background-image-holder">
+                    <img alt="Background Image" class="background-image" src="img/cover.jpg" />
+                </div>
+                <!-- Logo -->
+                <div class="logo-container">
+                    <a href=".">
+                        <img class="image-xxs fade-half" alt="Logo" src="img/logo-light.png">
+                    </a>
+                </div>
+                <!-- Text -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h1 class="mb24 large">Applicationizer</h1>
+                            <h6 class="uppercase mb40">Applicationize your web apps in no time</h6>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!-- Navigation -->
+                <ol class="breadcrumb breadcrumb-2">
+                    <li>
+                        <a href=".">Home</a>
+                    </li>
+                    <li class="active">Applicationizer</li>
+                </ol>
+            </section>
+            <!-- Enter Web App URL -->
+            <section class="bg pt64 pb64">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h2 class="mb8">Enter Web App Address</h2>
+                            <p class="lead mb40 mb-xs-24">
+                                The base URL of the web app you want to applicationize.
+                            </p>
+                            <!-- Applicationize Form -->
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <form class="applicationize-form" action="/applicationize" method="POST">
+                                    <!-- URL Input -->
+                                    <input type="text" name="url" placeholder="ENTER YOUR WEB APP URL (https://app.example.com)" autofocus autocomplete="off" />
+                                    
+                                    <!-- Submit Button -->
+                                    <button class="submit" type="submit">Generate &amp; Download Chrome Extension</button>
+                                    
+                                    <!-- Loading Indicator -->
+                                    <div class="spinner"></div>
+                                </form>
+                            </div>
+            			</div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <!-- Install the extension -->
+            <section class="bg-secondary pt64 pb64">
+                <div class="container">
+                    <div class="row">
+                        <!-- Instructions -->
+                        <div class="col-sm-12 text-center">
+                            <h2 class="mb24">Install the Chrome Extension</h2>
+                            <p class="lead mb24 mb-xs-24">
+                                Open a new tab in Chrome and browse to the <b>Extensions</b> page by browsing to the following URL:
+                            </p>
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <input type="text" name="website" value="chrome://extensions" disabled />
+                            </div>
+                            <p class="lead mb24 mb-xs-24 clearboth">
+                                Then, open your downloads folder and drag and drop the <b>.crx</b> file to the <b>Extensions</b> page to install it:
+                            </p>
+                            <div class="text-center mb-xs-24">
+                                <img class="cast-shadow" alt="Preview" src="img/screenshots/install.png" height="430" />
+                                <p class="desc mt24">Make sure you drag and drop from Finder / Windows Explorer and <b>not</b> from the Chrome downloads bar, as that won't work.</p>
+                            </div>
+            			</div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <!-- Enjoy -->
+            <section class="bg-dark pb0">
+            	<div class="container">
+            		<div class="row mb64 mb-xs-32">
+            			<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
+            				<h2 class="large">All done, enjoy!</h1>
+            				<p class="lead mb48 mb-xs-32 fade-1-4"> 
+                                Your applicationized web app is now available via your app launcher.
+                                <br />
+                                We recommend pinning it to your application dock or system taskbar! 
+            				</p>
+            				<a class="btn btn-lg btn-filled" href="https://twitter.com/intent/tweet?text=I%20just%20converted%20a%20web%20app%20into%20a%20desktop%20app%20like%20a%20boss%20with%20Applicationize!%20https%3A%2F%2Fapplicationize.me%2F" target="_blank">Tweet About This</a>
+            			</div>
+            		</div><!--end of row-->
+            	</div><!--end of container-->
+            </section>
+            <!-- Footer -->
+            <footer class="footer-2 bg-dark pt0 pb40">
+				<div class="container">
+					<div class="row">
+						<hr class="mt0 mb40" />
+					</div><!--end of row-->
+					<div class="row">
+                        <!-- Logo-->
+						<div class="col-sm-4">
+							<img class="image-xxs fade-half" alt="Logo" src="img/logo-light.png">
+						</div>
+                        <!-- Copyright -->
+						<div class="col-sm-4 text-center">
+							<span class="fade-half">
+								© Copyright 2016 Applicationize - All rights reserved.
+							</span>
+						</div>
+                        <!-- Links -->
+						<div class="col-sm-4 text-right">
+							<ul class="list-inline social-list">
+								<li>
+                                    <span class="fade-half">
+                                        Help us improve by contributing on
+                                    </span>
+                                    &nbsp;<a href="https://github.com/eladnava/applicationize" target="_blank"><i class="ti-github"></i></a></li>
+							</ul>
+						</div>
+					</div><!--end of row-->
+				</div><!--end of container-->
+			</footer>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/flexslider.min.js"></script>
+        <script src="js/lightbox.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/smooth-scroll.min.js"></script>
+        <script src="js/parallax.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/applicationizer.js"></script>
+    </body>
+</html>

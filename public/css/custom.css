@@ -1,0 +1,72 @@
+.overlay:before {
+    background: #000;
+    opacity: 0.5;
+}
+
+.slogan-container {
+    top: 21%;
+}
+
+.slogan-container h1 {
+    letter-spacing: -2px;
+}
+
+.slogan-container .btn {
+    top: 295%;
+    left: 0;
+    width: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    position: absolute;
+}
+
+.feature .icon {
+    opacity: 0.8;
+    color: #e31d3b;
+}
+
+.fork-me {
+    top: 0;
+    right: 0;
+    border: 0;
+    z-index: 5;
+    position: absolute;
+}
+
+.spinner {
+    display: none;
+}
+
+.logo-container {
+    top: 15px;
+    left: 15px;
+    z-index: 5;
+    position: absolute;
+}
+
+.generate-page .background-image-holder {
+    background-position: 0 -200px !important;
+}
+
+::-webkit-input-placeholder {
+  text-transform: none;
+}
+
+::-moz-placeholder {
+  text-transform: none;
+}
+
+:-moz-placeholder {
+  text-transform: none;
+}
+
+-ms-input-placeholder  {
+  text-transform: none;
+}
+
+@media (max-width: 767px) {
+    .slogan-container .btn {
+        position: static;
+    }
+}

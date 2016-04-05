@@ -1,12 +1,12 @@
 var koa = require('koa');
 var http = require('http');
 var route = require('koa-route');
-var serve = require('koa-static');
+var static = require('koa-static');
 var bodyParser = require('koa-bodyparser');
 
 // Koa middleware
-var https = require('./api/middleware/https');
-var error = require('./api/middleware/error');
+var https = require('./lib/middleware/https');
+var error = require('./lib/middleware/error');
 
 // Create koa app
 var app = koa();
@@ -15,10 +15,13 @@ var app = koa();
 app.use(error());
 app.use(https());
 app.use(bodyParser());
-app.use(serve('./frontend/dist'));
+app.use(static('./public'));
+
+// HTML file aliases
+app.use(route.get('/now', require('./lib/routes/now')));
 
 // API routes
-app.use(route.post('/generate', require('./api/routes/generate')));
+app.use(route.post('/applicationize', require('./lib/routes/applicationize')));
 
 // Define configurable port
 var port = process.env.PORT || 3000;
