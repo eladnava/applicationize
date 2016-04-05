@@ -11,7 +11,7 @@ Demo
 
 Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running as an applicationized desktop app:
 
-<img src="https://raw.github.com/eladnava/applicationize/master/frontend/src/assets/images/demo.jpg" width="512" />
+<img src="https://raw.github.com/eladnava/applicationize/master/public/img/preview.png" width="512" />
 
 How to Use
 ---
