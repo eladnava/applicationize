@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/eladnava/applicationize"
   },
-  "description": "Applicationize your favorite websites by wrapping them inside a Chrome extension that runs standalone like a native desktop app.",
+  "description": "Applicationize your favorite web apps by wrapping them inside a Chrome extension that runs standalone like a native desktop app.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

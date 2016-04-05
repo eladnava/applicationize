@@ -4,21 +4,11 @@
 }
 
 .slogan-container {
-    top: 21%;
+    top: 15%;
 }
 
-.slogan-container h1 {
-    letter-spacing: -2px;
-}
-
-.slogan-container .btn {
-    top: 295%;
-    left: 0;
-    width: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0 auto;
-    position: absolute;
+.cover .align-bottom {
+    bottom: 10%;
 }
 
 .feature .icon {
@@ -68,5 +58,8 @@
 @media (max-width: 767px) {
     .slogan-container .btn {
         position: static;
+    }
+    .text-center-mobile {
+        text-align: center;
     }
 }
