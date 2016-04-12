@@ -1,5 +1,4 @@
 var koa = require('koa');
-var http = require('http');
 var route = require('koa-route');
 var static = require('koa-static');
 var bodyParser = require('koa-bodyparser');
