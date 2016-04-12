@@ -1,9 +1,0 @@
-echo Running task: gulp build
-(cd frontend; gulp build)
-
-echo Running task: git commit
-git add . -A
-git commit -m "Deploy to production"
-
-echo Running task: eb deploy
-eb deploy
