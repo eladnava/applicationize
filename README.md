@@ -3,7 +3,7 @@
 
 Applicationize convert your favorite web apps into desktop apps with their own dedicated launcher icon. 
 
-It generates a Google Chrome extension that embeds your favorite web app and places a custom shortcut icon in your app launcher when you install it.
+It generates a Google Chrome extension that embeds your favorite [SPA](https://en.wikipedia.org/wiki/Single-page_application) web app and places a custom shortcut icon in your app launcher when you install it.
 
 <a href="https://applicationize.me/" target="_blank">https://applicationize.me/</a>
 
