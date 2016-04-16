@@ -31,7 +31,7 @@ That's it! Your applicationized web app is now available via your app launcher. 
 * Make your commits and PRs as tiny as possible - one feature or bugfix at a time
 * Write detailed commit messages, in-line with the project's commit naming conventions
 
-### Running the Server
+## Running the Server
 
 Run the following commands in the root directory of this project:
 
