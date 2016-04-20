@@ -56,51 +56,61 @@
             <section class="bg pt64 pb64">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <h2 class="mb8">Enter Web App Address</h2>
-                            <p class="lead mb40 mb-xs-24">
-                                The base URL of the web app you want to applicationize.
+                        <div class="col-sm-6">
+                            <h4 class="uppercase mb16">1. Generate Extension</h4>
+                            <p class="lead mb64">
+                                Enter the address of the web app you want to applicationize.
                             </p>
-                            <!-- Applicationize Form -->
-                            <div class="col-sm-6 col-sm-offset-3">
-                                <form class="applicationize-form" action="/applicationize" method="POST">
-                                    <!-- URL Input -->
-                                    <input type="text" name="url" placeholder="ENTER WEB APP URL (https://app.example.com)" value="https://" autocomplete="off" />
-                                    
-                                    <!-- Submit Button -->
-                                    <button class="submit" type="submit">Generate &amp; Download Chrome Extension</button>
-                                    
-                                    <!-- Loading Indicator -->
-                                    <div class="spinner"></div>
-                                </form>
-                            </div>
-            			</div>
-                    </div>
-                    <!--end of row-->
-                </div>
-                <!--end of container-->
-            </section>
-            <!-- Install the extension -->
-            <section class="bg-secondary pt64 pb64">
-                <div class="container">
-                    <div class="row">
-                        <!-- Instructions -->
-                        <div class="col-sm-12 text-center">
-                            <h2 class="mb24">Install the Chrome Extension</h2>
-                            <p class="lead mb24 mb-xs-24">
-                                Open a new tab in Chrome and browse to the <b>Extensions</b> page by browsing to the following URL:
+                            <form class="applicationize-form" action="/applicationize" method="post" enctype="multipart/form-data">
+                                <!-- URL input -->
+                                <div class="input-with-label text-left mb8">
+                                    <span>WEB APP URL</span>
+                                    <input class="mb0" type="text" name="url" placeholder="ENTER WEB APP URL (https://app.example.com)" value="https://" autocomplete="off" />
+                                </div>
+                                
+                                <!-- Advanced options toggle -->
+                                <div class="text-center mb24">
+                                    <a href class="advanced-options-toggle input-subtext">(advanced options)</a>
+                                </div>
+                                
+                                <!-- Advanced options -->
+                                <div class="advanced-options-container mt24 mb24">
+                                     <!-- Custom app icon -->
+                                    <div class="input-with-label text-left mb24">
+                                        <span>Custom App Icon</span>
+                                        <input type="file" name="icon" autocomplete="off" />
+                                    </div>
+                                </div>
+                                
+                                <!-- Submit Button -->
+                                <button class="submit" type="submit">Generate &amp; Download Chrome Extension</button>
+                                
+                                <!-- Loading Indicator -->
+                                <div class="spinner"></div>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="uppercase mb16">2. Install Extension</h4>
+                            <p class="lead mb64">
+                                Install the Chrome Extension you just downloaded.
                             </p>
-                            <div class="col-sm-8 col-sm-offset-2">
+                            
+                            <!-- Link to chrome://extensions -->
+                            <div class="input-with-label text-left mb24">
+                                <span>Copy and paste this into a new tab</span>
                                 <input type="text" name="website" value="chrome://extensions" disabled />
                             </div>
+                            
+                            <!-- Drag and drop -->
                             <p class="lead mb24 mb-xs-24 clearboth">
-                                Then, open your downloads folder and drag and drop the <b>.crx</b> file to the <b>Extensions</b> page to install it:
+                                Drag and drop the Chrome Extension to the <b>Extensions</b> page to install it
                             </p>
+                            <!-- Drag and drop (screenshot) -->
                             <div class="text-center mb-xs-24">
-                                <img class="cast-shadow" alt="Preview" src="img/screenshots/install.png" height="430" />
-                                <p class="desc mt24">Make sure you drag and drop from Finder / Windows Explorer and <b>not</b> from the Chrome downloads bar, as that won't work.</p>
+                                <img class="cast-shadow" alt="Preview" src="img/screenshots/install.png" />
+                                <p class="desc mt24">Make sure you drag and drop from OS X Finder / Windows Explorer and <b>not</b> from the Chrome downloads bar, as that won't work.</p>
                             </div>
-            			</div>
+                        </div>
                     </div>
                     <!--end of row-->
                 </div>

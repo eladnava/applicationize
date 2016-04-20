@@ -35,6 +35,18 @@
     position: absolute;
 }
 
+.input-subtext {
+    color: inherit;
+    font-size: 10px;
+    font-weight: 300;
+    display: inline-block;
+    border-bottom: 1px dotted #999;
+}
+
+.advanced-options-container {
+    display: none;
+}
+
 ::-webkit-input-placeholder {
   text-transform: none;
 }
