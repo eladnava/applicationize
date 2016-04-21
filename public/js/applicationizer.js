@@ -18,14 +18,12 @@ $(document).ready(function () {
         // Get input URL
         var url = $(this).find('input[name="url"]').val();
 
-        // No URL?
-        if (!url) {
-            alert('Please enter a valid web app URL to applicationize.');
-            return e.preventDefault();
-        }
+        // Try parsing the URL
+        var parser = document.createElement('a');
+        parser.href = url;
 
-        // Verify protocol
-        if (url.substring(0, 4) !== 'http') {
+        // Verify host & protocol
+        if (! url || url.substring(0, 4) !== 'http' || ! parser.host) {
             alert('Please provide a valid web app URL.\r\nExample: https://www.messenger.com/');
             return e.preventDefault();
         }
