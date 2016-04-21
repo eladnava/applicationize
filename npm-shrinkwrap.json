@@ -119,6 +119,66 @@
         }
       }
     },
+    "co-busboy": {
+      "version": "1.3.1",
+      "from": "co-busboy@latest",
+      "resolved": "https://registry.npmjs.org/co-busboy/-/co-busboy-1.3.1.tgz",
+      "dependencies": {
+        "black-hole-stream": {
+          "version": "0.0.1",
+          "from": "black-hole-stream@>=0.0.1 <0.1.0",
+          "resolved": "https://registry.npmjs.org/black-hole-stream/-/black-hole-stream-0.0.1.tgz"
+        },
+        "busboy": {
+          "version": "0.2.13",
+          "from": "busboy@>=0.2.8 <0.3.0",
+          "resolved": "https://registry.npmjs.org/busboy/-/busboy-0.2.13.tgz",
+          "dependencies": {
+            "dicer": {
+              "version": "0.2.5",
+              "from": "dicer@0.2.5",
+              "resolved": "https://registry.npmjs.org/dicer/-/dicer-0.2.5.tgz",
+              "dependencies": {
+                "streamsearch": {
+                  "version": "0.1.2",
+                  "from": "streamsearch@0.1.2",
+                  "resolved": "https://registry.npmjs.org/streamsearch/-/streamsearch-0.1.2.tgz"
+                }
+              }
+            },
+            "readable-stream": {
+              "version": "1.1.14",
+              "from": "readable-stream@>=1.1.0 <1.2.0",
+              "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-1.1.14.tgz",
+              "dependencies": {
+                "core-util-is": {
+                  "version": "1.0.2",
+                  "from": "core-util-is@>=1.0.0 <1.1.0"
+                },
+                "isarray": {
+                  "version": "0.0.1",
+                  "from": "isarray@0.0.1",
+                  "resolved": "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz"
+                },
+                "string_decoder": {
+                  "version": "0.10.31",
+                  "from": "string_decoder@>=0.10.0 <0.11.0"
+                },
+                "inherits": {
+                  "version": "2.0.1",
+                  "from": "inherits@>=2.0.1 <2.1.0"
+                }
+              }
+            }
+          }
+        },
+        "chan": {
+          "version": "0.6.1",
+          "from": "chan@>=0.6.1 <0.7.0",
+          "resolved": "https://registry.npmjs.org/chan/-/chan-0.6.1.tgz"
+        }
+      }
+    },
     "crx": {
       "version": "3.0.3",
       "from": "crx@3.0.3",
