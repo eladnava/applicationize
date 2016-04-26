@@ -4,7 +4,7 @@
  * @see http://developer.chrome.com/apps/app.runtime.html
  * @see http://developer.chrome.com/apps/app.window.html
  */
-chrome.app.runtime.onLaunched.addListener(function() {
+chrome.app.runtime.onLaunched.addListener(function () {
     runApp();
 });
 
@@ -13,7 +13,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
  *
  * @see http://developer.chrome.com/apps/app.runtime.html
  */
-chrome.app.runtime.onRestarted.addListener(function() {
+chrome.app.runtime.onRestarted.addListener(function () {
     runApp();
 });
 
@@ -24,11 +24,5 @@ chrome.app.runtime.onRestarted.addListener(function() {
  */
 function runApp() {
     // Creat a new Chrome app window
-    chrome.app.window.create('html/embed.html', {
-        id: 'embed',
-        innerBounds: {
-            'width': 1180,
-            'height': 900
-        }
-    });
+    chrome.app.window.create('html/embed.html', {inject-app-window-params});
 }

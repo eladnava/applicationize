@@ -1258,6 +1258,11 @@
       "version": "2.1.2",
       "from": "thunkify@2.1.2",
       "resolved": "https://registry.npmjs.org/thunkify/-/thunkify-2.1.2.tgz"
+    },
+    "validator": {
+      "version": "5.2.0",
+      "from": "validator@latest",
+      "resolved": "https://registry.npmjs.org/validator/-/validator-5.2.0.tgz"
     }
   }
 }
