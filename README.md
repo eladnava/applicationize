@@ -1,7 +1,7 @@
 # Applicationize
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eladnava/applicationize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Applicationize convert your favorite web apps into desktop apps with their own dedicated launcher icon. 
+Applicationize converts your favorite web apps into desktop apps with their own dedicated launcher icon. 
 
 It generates a Google Chrome extension that embeds your favorite [SPA](https://en.wikipedia.org/wiki/Single-page_application) web app and places a custom shortcut icon in your app launcher when you install it.
 
