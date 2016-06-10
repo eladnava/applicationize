@@ -1,7 +1,7 @@
 var koa = require('koa');
 var route = require('koa-route');
 var static = require('koa-static');
-var bodyParser = require('koa-bodyparser');
+var body = require('koa-better-body');
 
 // Koa middleware
 var https = require('./lib/middleware/https');
@@ -13,7 +13,7 @@ var app = koa();
 // Koa middleware
 app.use(error());
 app.use(https());
-app.use(bodyParser());
+app.use(body());
 app.use(static('./public'));
 
 // HTML file aliases
