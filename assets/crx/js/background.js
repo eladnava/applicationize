@@ -1,3 +1,6 @@
+// This will be injected dynamically at extension creation time
+var appConfig = {inject-background-script-config};
+
 /**
  * Listens for the app launching then creates the window
  *
@@ -24,7 +27,7 @@ chrome.app.runtime.onRestarted.addListener(function () {
  */
 function runApp() {
     // Creat a new Chrome app window
-    chrome.app.window.create('html/embed.html', {inject-app-window-params}, onWindowLoaded());
+    chrome.app.window.create('html/embed.html', appConfig.chromeAppWindow, onWindowLoaded());
 }
 
 /**
@@ -52,6 +55,10 @@ function onWindowLoaded(popup) {
                 if (e.initialWidth > 0 && e.initialHeight > 0) {
                     // Open it in a popup window with a set width and height
                     return chrome.app.window.create('html/embed.html', { frame: { type: 'chrome' }, innerBounds: { width: e.initialWidth, height: e.initialHeight } }, onWindowLoaded(e));
+                }
+                // Open links internally?
+                else if (appConfig.behavior.internalLinks) {
+                    return chrome.app.window.create('html/embed.html', { frame: { type: 'chrome' }, innerBounds: appConfig.chromeAppWindow.innerBounds }, onWindowLoaded(e));
                 }
 
                 // Open the link in a new browser tab/window
