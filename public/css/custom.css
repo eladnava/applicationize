@@ -16,6 +16,10 @@
     color: #e31d3b;
 }
 
+.checkbox-option {
+    margin-bottom: 0;
+}
+
 .fork-me {
     top: 0;
     right: 0;
