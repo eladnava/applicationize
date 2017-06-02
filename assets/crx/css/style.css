@@ -2,3 +2,23 @@ webview {
     width: 100vw;
     height: 100vh;
 }
+
+#find-box {
+    top: 0;
+    right: 70px;
+    width: 250px;
+    display: none;
+    position: absolute;
+    background: #f1f1f1;
+    border: 1px solid #eee;
+    border-radius: 0 0 3px 3px;
+}
+
+#find-text {
+    width: 92%;
+    margin: 4px;
+    padding: 5px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+}
