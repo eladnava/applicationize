@@ -24,6 +24,15 @@ Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running a
 
 That's it! Your applicationized web app is now available via your app launcher. We recommend pinning it to your application dock or system taskbar!
 
+## Keyboard Shortcuts
+
+* `CMD + +` to zoom in
+* `CMD + -` to zoom out
+* `CMD + 0` to reset zoom
+* `CMD + F` to find in page
+* `CMD + R` to refresh the page
+* `CMD + L` to copy current page URL
+
 ## Contributing
 
 * If you find a bug or wish to make some kind of change, please create an issue first
