@@ -59,11 +59,9 @@ document.addEventListener('keydown', function (e) {
 });
 
 // Find input: listen to keydown event
-findInput.addEventListener('keydown', function (e) {
-    // Enter key
-    if (e.keyCode === 13) {
-        webview.find(findInput.value, { matchCase: false });
-    }
+findInput.addEventListener('keyup', function (e) {
+    // Search for current input text
+    webview.find(findInput.value, { matchCase: false });
     
     // Escape key
     if (e.keyCode === 27) {
