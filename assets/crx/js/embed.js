@@ -1,6 +1,10 @@
 // Get webview element
 var webview = document.getElementById('webview');
 
+// Get find box elements
+var findBox = document.getElementById('find-box');
+var findInput = document.getElementById('find-text');
+
 // Initial page zoom factor
 var zoomFactor = 1.0;
 
@@ -9,6 +13,18 @@ document.addEventListener('keydown', function (e) {
     // Refresh the page (CMD + R)
     if (e.metaKey && e.keyCode == 'R'.charCodeAt(0)) {
         webview.reload();
+    }
+
+    // Find in page (CMD + F)
+    if (e.metaKey && e.keyCode == 'F'.charCodeAt(0)) {
+        // Show the find box
+        findBox.style.display = 'block';
+
+        // Focus the find input
+        findInput.focus();
+
+        // Select all existing text (if any)
+        findInput.select();
     }
 
     // Copy URL (CMD + L)
@@ -39,6 +55,20 @@ document.addEventListener('keydown', function (e) {
     if (e.metaKey && e.keyCode == '0'.charCodeAt(0)) {
         zoomFactor = 1.0;
         webview.setZoom(zoomFactor);
+    }
+});
+
+// Find input: listen to keydown event
+findInput.addEventListener('keydown', function (e) {
+    // Enter key
+    if (e.keyCode === 13) {
+        webview.find(findInput.value, { matchCase: false });
+    }
+    
+    // Escape key
+    if (e.keyCode === 27) {
+        webview.stopFinding();
+        findBox.style.display = 'none';
     }
 });
 

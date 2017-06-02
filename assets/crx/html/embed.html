@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <!-- Most magic happens here -->
     <webview id="webview" src="https://applicationize.me/" partition="persist:applicationize"></webview>
+    <!-- Find in page -->
+    <div id="find-box">
+        <input type="text" id="find-text" placeholder="Find in page" />
+    </div>
+    <!-- Embed script to capture keystrokes -->
     <script src="../js/embed.js"></script>
 </body>
 </html>
