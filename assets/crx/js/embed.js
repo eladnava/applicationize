@@ -11,6 +11,12 @@ document.addEventListener('keydown', function (e) {
         webview.reload();
     }
 
+    // Copy URL (CMD + L)
+    if (e.metaKey && e.keyCode == 'L'.charCodeAt(0)) {
+        // Copy webview source to clipboard
+        copyToClipboard(webview.src, 'text/plain');
+    }
+
     // Zoom in (CMD +)
     if (e.metaKey && e.keyCode == 187) {
         zoomFactor += 0.1;
@@ -35,3 +41,14 @@ document.addEventListener('keydown', function (e) {
         webview.setZoom(zoomFactor);
     }
 });
+
+function copyToClipboard(str, mimetype) {
+    // Listen for 'oncopy' event
+    document.oncopy = function (event) {
+        event.clipboardData.setData(mimetype, str);
+        event.preventDefault();
+    };
+
+    // Execute browser command 'Copy'
+    document.execCommand("Copy", false, null);
+}
