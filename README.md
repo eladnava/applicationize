@@ -26,14 +26,14 @@ That's it! Your applicationized web app is now available via your app launcher. 
 
 ## Keyboard Shortcuts
 
-* `CMD + {` to go back
-* `CMD + }` to go forward
-* `CMD + +` to zoom in
-* `CMD + -` to zoom out
-* `CMD + 0` to reset zoom
-* `CMD + F` to find in page
-* `CMD + R` to refresh the page
-* `CMD + L` to copy current page URL
+* `CTRL/CMD + {` to go back
+* `CTRL/CMD + }` to go forward
+* `CTRL/CMD + +` to zoom in
+* `CTRL/CMD + -` to zoom out
+* `CTRL/CMD + 0` to reset zoom
+* `CTRL/CMD + F` to find in page
+* `CTRL/CMD + R` to refresh the page
+* `CTRL/CMD + L` to copy current page URL
 
 ## Contributing
 
