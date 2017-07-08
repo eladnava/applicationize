@@ -5,6 +5,13 @@ var webview = document.getElementById('webview');
 var findBox = document.getElementById('find-box');
 var findInput = document.getElementById('find-text');
 
+// Get dialog box
+var dialogBox = document.getElementById("dialog-box");
+var dialogText = dialogBox.getElementsByTagName('div')[0];
+var dialogInput = dialogBox.getElementsByTagName('input')[0];
+var dialogCancel = dialogBox.getElementsByTagName('button')[0];
+var dialogOK = dialogBox.getElementsByTagName('button')[1];
+
 // Initial page zoom factor
 var zoomFactor = 1.0;
 
@@ -83,3 +90,38 @@ function copyToClipboard(str, mimetype) {
     // Execute browser command 'Copy'
     document.execCommand("Copy", false, null);
 }
+
+// Dialogs custom box
+var DialogController = null;
+dialogBox.getElementsByTagName('button')[0].addEventListener('click',function(){
+    DialogController.cancel();
+    dialogBox.style.display = 'none';
+});
+dialogBox.getElementsByTagName('button')[1].addEventListener('click',function(){
+    DialogController.ok(dialogInput.value);
+    dialogBox.style.display = 'none';
+});
+webview.addEventListener('dialog',function(e){
+    e.preventDefault();
+
+    messageType = e.messageType;
+    messageText = e.messageText;
+    DialogController = e.dialog;
+
+    dialogText.innerHTML = messageText;
+    
+    dialogInput.value = ''; 
+    dialogInput.style.display='none';
+   
+    if(messageType == 'alert'){
+        dialogCancel.style.display = 'none';
+    }
+    else{
+        dialogCancel.style.display = 'block';
+        if(messageType == 'prompt'){
+            dialogInput.style.display = 'block'; 
+        }
+    }
+    
+    dialogBox.style.display = 'block';
+});

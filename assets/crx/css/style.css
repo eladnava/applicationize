@@ -22,3 +22,32 @@ webview {
     border-radius: 3px;
     border: 1px solid #e6e6e6;
 }
+
+#dialog-box {
+    top: 0;
+    width: 360px;
+    display: none;
+    position: absolute;
+    background: #f1f1f1;
+    border: 1px solid #eee;
+    border-radius: 0 0 3px 3px;
+    margin:30px 0 0 50%;
+    left:-180px;
+}
+#dialog-box div {
+    padding: 20px;
+}
+#dialog-box input {
+    margin: 0 20px 20px 20px;
+    width:calc(100% - 45px);
+    display:none;
+}
+#dialog-box button {
+    font-size:16px;
+    width:90px;
+    height:30px;
+    bottom:0;
+    position: relative;
+    float:left;
+    margin: 0 45px 20px 45px;
+}
