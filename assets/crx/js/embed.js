@@ -5,12 +5,12 @@ var webview = document.getElementById('webview');
 var findBox = document.getElementById('find-box');
 var findInput = document.getElementById('find-text');
 
-// Get dialog box
+// Get dialog box elements
 var dialogBox = document.getElementById("dialog-box");
+var dialogOk = document.getElementById("dialog-box-ok");
 var dialogText = document.getElementById("dialog-box-text");
 var dialogInput = document.getElementById("dialog-box-input");
 var dialogCancel = document.getElementById("dialog-box-cancel");
-var dialogOK = document.getElementById("dialog-box-ok");
 
 // Initial page zoom factor
 var zoomFactor = 1.0;
@@ -72,7 +72,7 @@ document.addEventListener('keydown', function (e) {
 findInput.addEventListener('keyup', function (e) {
     // Search for current input text
     webview.find(findInput.value, { matchCase: false });
-    
+
     // Escape key
     if (e.keyCode === 27) {
         webview.stopFinding();
@@ -91,37 +91,64 @@ function copyToClipboard(str, mimetype) {
     document.execCommand("Copy", false, null);
 }
 
-// Dialogs custom box
-var dialogController = null;
-dialogCancel.addEventListener('click',function(){
+// Custom alert dialog popup
+var dialogController;
+
+// Listen for dialog cancellation button click
+dialogCancel.addEventListener('click', function () {
+    // Send cancellation
     dialogController.cancel();
+
+    // Hide dialog box
     dialogBox.style.display = 'none';
 });
-dialogOK.addEventListener('click',function(){
+
+// Listen for dialog OK button click
+dialogOk.addEventListener('click', function () {
+    // Send OK value
     dialogController.ok(dialogInput.value);
+
+    // Hide dialog box
     dialogBox.style.display = 'none';
 });
-webview.addEventListener('dialog',function(e){
+
+// Listen for dialog event on webview for new alert dialogs
+webview.addEventListener('dialog', function (e) {
+    // Prevent default logic
     e.preventDefault();
 
-    messageType = e.messageType;
-    messageText = e.messageText;
+    // Extract dialog type and text
+    var text = e.messageText;
+    var dialogType = e.messageType;
+
+    // Keep a reference to dialog object
     dialogController = e.dialog;
 
-    dialogText.innerHTML = messageText;
-    
-    dialogInput.value = ''; 
-    dialogInput.style.display='none';
-   
-    if(messageType == 'alert'){
+    // Set dialog text
+    dialogText.innerHTML = text;
+
+    // Reset dialog input
+    dialogInput.value = '';
+
+    // Hide it by default
+    dialogInput.style.display = 'none';
+
+    // Alert?
+    if (dialogType == 'alert') {
+        // Hide cancel button
         dialogCancel.style.display = 'none';
     }
-    else{
+    else {
+        // Another type of dialog, show cancel button
         dialogCancel.style.display = 'block';
-        if(messageType == 'prompt'){
-            dialogInput.style.display = 'block'; 
+        
+        // Prompt?
+        if (dialogType == 'prompt') {
+            // Show text input field
+            dialogInput.style.display = 'block';
         }
     }
-    
+
+    // Show dialog box
     dialogBox.style.display = 'block';
 });
