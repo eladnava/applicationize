@@ -34,15 +34,15 @@ webview {
     margin:30px 0 0 50%;
     left:-180px;
 }
-#dialog-box div {
+#dialog-box-text {
     padding: 20px;
 }
-#dialog-box input {
+#dialog-box-input {
     margin: 0 20px 20px 20px;
     width:calc(100% - 45px);
     display:none;
 }
-#dialog-box button {
+.dialog-box-button {
     font-size:16px;
     width:90px;
     height:30px;

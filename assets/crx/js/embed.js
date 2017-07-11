@@ -7,10 +7,10 @@ var findInput = document.getElementById('find-text');
 
 // Get dialog box
 var dialogBox = document.getElementById("dialog-box");
-var dialogText = dialogBox.getElementsByTagName('div')[0];
-var dialogInput = dialogBox.getElementsByTagName('input')[0];
-var dialogCancel = dialogBox.getElementsByTagName('button')[0];
-var dialogOK = dialogBox.getElementsByTagName('button')[1];
+var dialogText = document.getElementById("dialog-box-text");
+var dialogInput = document.getElementById("dialog-box-input");
+var dialogCancel = document.getElementById("dialog-box-cancel");
+var dialogOK = document.getElementById("dialog-box-ok");
 
 // Initial page zoom factor
 var zoomFactor = 1.0;
@@ -92,13 +92,13 @@ function copyToClipboard(str, mimetype) {
 }
 
 // Dialogs custom box
-var DialogController = null;
-dialogBox.getElementsByTagName('button')[0].addEventListener('click',function(){
-    DialogController.cancel();
+var dialogController = null;
+dialogCancel.addEventListener('click',function(){
+    dialogController.cancel();
     dialogBox.style.display = 'none';
 });
-dialogBox.getElementsByTagName('button')[1].addEventListener('click',function(){
-    DialogController.ok(dialogInput.value);
+dialogOK.addEventListener('click',function(){
+    dialogController.ok(dialogInput.value);
     dialogBox.style.display = 'none';
 });
 webview.addEventListener('dialog',function(e){
@@ -106,7 +106,7 @@ webview.addEventListener('dialog',function(e){
 
     messageType = e.messageType;
     messageText = e.messageText;
-    DialogController = e.dialog;
+    dialogController = e.dialog;
 
     dialogText.innerHTML = messageText;
     
