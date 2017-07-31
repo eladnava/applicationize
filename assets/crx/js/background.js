@@ -51,13 +51,17 @@ function onWindowLoaded(popup) {
             // Sign up for 'newwindow' event
             // Emitted when a target='_blank' link is clicked within the webview
             webview.addEventListener('newwindow', function (e) {
+                // Parse target window URL to extract hostname
+                var parsedUrl = document.createElement('a');
+                parsedUrl.href = e.targetUrl;
+
                 // Popup?
                 if (e.initialWidth > 0 && e.initialHeight > 0) {
                     // Open it in a popup window with a set width and height
                     return chrome.app.window.create('html/embed.html', { frame: { type: 'chrome' }, innerBounds: { width: e.initialWidth, height: e.initialHeight } }, onWindowLoaded(e));
                 }
-                // Open links internally?
-                else if (appConfig.behavior.internalLinks) {
+                // Open app links internally?
+                else if (appConfig.behavior.internalLinks && parsedUrl.hostname === appConfig.hostname) {
                     return chrome.app.window.create('html/embed.html', { frame: { type: 'chrome' }, innerBounds: appConfig.chromeAppWindow.innerBounds }, onWindowLoaded(e));
                 }
 
