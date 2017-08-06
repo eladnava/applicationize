@@ -26,8 +26,8 @@ That's it! Your applicationized web app is now available via your app launcher. 
 
 ## Keyboard Shortcuts
 
-* `CTRL/CMD + {` to go back
-* `CTRL/CMD + }` to go forward
+* `CTRL/CMD + [` to go back
+* `CTRL/CMD + ]` to go forward
 * `CTRL/CMD + +` to zoom in
 * `CTRL/CMD + -` to zoom out
 * `CTRL/CMD + 0` to reset zoom
