@@ -34,6 +34,7 @@ That's it! Your applicationized web app is now available via your app launcher. 
 * `CTRL/CMD + F` to find in page
 * `CTRL/CMD + R` to refresh the page
 * `CTRL/CMD + L` to copy current page URL
+* `CTRL + CMD + F` to enter full screen mode (`ALT + CTRL + F` on Windows)
 
 ## Contributing
 

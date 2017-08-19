@@ -19,6 +19,26 @@ var zoomFactor = 1.0;
 document.addEventListener('keydown', function (e) {
     // Check whether CTRL on Windows or CMD on Mac is pressed
     var modifierActive = (navigator.platform.startsWith('Win')) ? e.ctrlKey : e.metaKey;
+    var altModifierActive = (navigator.platform.startsWith('Win')) ? e.altKey : e.ctrlKey;
+
+    // Enter full screen mode (CMD/ALT + CTRL + F)
+    if (modifierActive && altModifierActive && e.keyCode == 'F'.charCodeAt(0)) {
+        // Get current focused window
+        var window = chrome.app.window.current();
+
+        // Check if currently full screen
+        if (!window.isFullscreen()) {
+            // Enter full screen mode
+            window.fullscreen();
+        }
+        else {
+            // Exit full screen mode
+            window.restore();
+        }
+        
+        // Prevent other shortcut checks
+        return;
+    }
 
     // Refresh the page (CTRL/CMD + R)
     if (modifierActive && e.keyCode == 'R'.charCodeAt(0)) {
@@ -141,7 +161,7 @@ webview.addEventListener('dialog', function (e) {
     else {
         // Another type of dialog, show cancel button
         dialogCancel.style.display = 'block';
-        
+
         // Prompt?
         if (dialogType == 'prompt') {
             // Show text input field

@@ -17,6 +17,7 @@
         }
     },
     "permissions": [
-        "webview"
+        "webview",
+        "fullscreen"
     ]
 }
