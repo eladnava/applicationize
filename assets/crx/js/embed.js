@@ -16,7 +16,7 @@ var dialogCancel = document.getElementById("dialog-box-cancel");
 var zoomFactor = 1.0;
 
 // Listen to keydown event
-document.addEventListener('keydown', function (e) {
+window.onkeydown = function (e) {
     // Check whether CTRL on Windows or CMD on Mac is pressed
     var modifierActive = (navigator.platform.startsWith('Win')) ? e.ctrlKey : e.metaKey;
     var altModifierActive = (navigator.platform.startsWith('Win')) ? e.altKey : e.ctrlKey;
@@ -35,7 +35,7 @@ document.addEventListener('keydown', function (e) {
             // Exit full screen mode
             window.restore();
         }
-        
+
         // Prevent other shortcut checks
         return;
     }
@@ -86,7 +86,28 @@ document.addEventListener('keydown', function (e) {
         zoomFactor = 1.0;
         webview.setZoom(zoomFactor);
     }
+};
+
+// Listen for webview load event
+webview.addEventListener('contentload', function () {
+    // Execute JS script within webview
+    webview.executeScript({
+        // Send a Chrome runtime message every time the keydown event is fired within webview
+        code: `window.addEventListener('keydown', function (e) {
+            chrome.runtime.sendMessage({ event: 'keydown', params: { ctrlKey: e.ctrlKey, metaKey: e.metaKey, altKey: e.altKey, keyCode: e.keyCode } });
+        });`});
 });
+
+// Listen for Chrome runtime messages
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        // Check for keydown event
+        if (request.event === 'keydown') {
+            // Invoke the local window's keydown event handler
+            window.onkeydown(request.params);
+        }
+    }
+);
 
 // Find input: listen to keydown event
 findInput.addEventListener('keyup', function (e) {
