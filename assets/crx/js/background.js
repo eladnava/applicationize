@@ -42,6 +42,11 @@ function onWindowLoaded(popup) {
             // Get webview 
             var webview = win.contentWindow.document.getElementById('webview');
 
+            // Override default user agent if provided
+            if (appConfig.userAgent) {
+                webview.setUserAgentOverride(appConfig.userAgent);
+            }
+
             // Sign up for 'permissionrequest' event
             webview.addEventListener('permissionrequest', function (e) {
                 // Allow all permission requests
