@@ -66,7 +66,7 @@ function onWindowLoaded(popup) {
                     return chrome.app.window.create('html/embed.html', { frame: { type: 'chrome' }, innerBounds: { width: e.initialWidth, height: e.initialHeight } }, onWindowLoaded(e));
                 }
                 // Open app links internally?
-                else if (appConfig.behavior.internalLinks && parsedUrl.hostname === appConfig.hostname) {
+                else if (appConfig.behavior.internalLinks && parsedUrl.hostname.includes(appConfig.hostname)) {
                     return chrome.app.window.create('html/embed.html', { frame: { type: 'chrome' }, innerBounds: appConfig.chromeAppWindow.innerBounds }, onWindowLoaded(e));
                 }
 
