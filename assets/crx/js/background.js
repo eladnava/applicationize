@@ -78,6 +78,9 @@ function onWindowLoaded(popup) {
             if (popup) {
                 // Override webview source with popup's target URL
                 webview.src = popup.targetUrl;
+
+                // Attach original calling window to popup webview (accessible via window.opener)
+                popup.window.attach(webview);
             }
         };
     };
