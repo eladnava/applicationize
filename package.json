@@ -15,6 +15,7 @@
   "dependencies": {
     "cheerio": "0.19.0",
     "crx3-ahwayakchih": "^4.0.1",
+    "fs-extra": "^7.0.1",
     "koa": "1.1.2",
     "koa-better-body": "^2.0.1",
     "koa-route": "2.4.2",
