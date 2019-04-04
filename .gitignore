@@ -3,4 +3,4 @@
 .elasticbeanstalk/
 node_modules/
 typings/
-tmp/
+staging/
