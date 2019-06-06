@@ -22,7 +22,7 @@
     "koa-send": "^3.2.0",
     "koa-static": "1.5.2",
     "pem": "^1.14.2",
-    "request": "2.74.0",
+    "request": "^2.88.0",
     "thunkify": "2.1.2",
     "validator": "^5.2.0"
   }
