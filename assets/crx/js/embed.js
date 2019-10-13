@@ -18,8 +18,8 @@ var zoomFactor = 1.0;
 // Listen to keydown event
 window.onkeydown = function (e) {
     // Check whether CTRL on Windows or CMD on Mac is pressed
-    var modifierActive = (navigator.platform.startsWith('Win')) ? e.ctrlKey : e.metaKey;
-    var altModifierActive = (navigator.platform.startsWith('Win')) ? e.altKey : e.ctrlKey;
+    var modifierActive = (navigator.platform.startsWith('Mac')) ? e.metaKey : e.ctrlKey;
+    var altModifierActive = (navigator.platform.startsWith('Mac')) ? e.ctrlKey : e.altKey;
 
     // Enter full screen mode (CMD/ALT + CTRL + F)
     if (modifierActive && altModifierActive && e.keyCode == 'F'.charCodeAt(0)) {
