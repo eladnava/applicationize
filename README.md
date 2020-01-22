@@ -31,6 +31,7 @@ That's it! Your applicationized web app is now available via your app launcher. 
 * `CTRL/CMD + +` to zoom in
 * `CTRL/CMD + -` to zoom out
 * `CTRL/CMD + 0` to reset zoom
+* `CTRL/CMD + P` to print page
 * `CTRL/CMD + F` to find in page
 * `CTRL/CMD + R` to refresh the page
 * `CTRL/CMD + L` to copy current page URL

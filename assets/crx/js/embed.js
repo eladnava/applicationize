@@ -63,6 +63,11 @@ window.onkeydown = function (e) {
         copyToClipboard(webview.src, 'text/plain');
     }
 
+    // Print (CTRL/CMD + P)
+    if (modifierActive && e.keyCode == 'P'.charCodeAt(0)) {
+        webview.print();
+    }
+
     // Zoom in (CTRL/CMD +)
     if (modifierActive && e.keyCode == 187) {
         zoomFactor += 0.1;
