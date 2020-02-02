@@ -55,6 +55,16 @@ npm start
 
 Then, visit [http://localhost:3000/](http://localhost:3000/) to browse to your local instance of Applicationize.
 
+## Contributors
+
+Thanks to the following individuals and organizations who help pay for hosting & domain renewal:
+
+* [@guidokok](https://github.com/guidokok) - Guido Bedarida
+* [Seam.es](https://seam.es) - we design & build for the web; stitch by stitch
+* [Fan Studio UK](https://www.fanstudio.co.uk/) - we specialize in mobile game app development and gamification strategies for startups and enterprise clients
+
+
+
 ## License
 
 Apache 2.0
