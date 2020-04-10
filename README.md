@@ -9,7 +9,7 @@ It generates a Google Chrome extension that embeds your favorite [SPA](https://e
 
 ## Demo
 
-Here's a screenshot of Facebook Messenger (https://www.messenger.com/) running as an applicationized desktop app:
+Here's a screenshot of Facebook Messenger (messenger.com) running as an applicationized desktop app:
 
 <br />
 <img src="https://raw.github.com/eladnava/applicationize/master/public/img/preview.png" width="512" />
@@ -26,16 +26,16 @@ That's it! Your applicationized web app is now available via your app launcher. 
 
 ## Keyboard Shortcuts
 
-* `CTRL/CMD + [` to go back
-* `CTRL/CMD + ]` to go forward
-* `CTRL/CMD + +` to zoom in
-* `CTRL/CMD + -` to zoom out
-* `CTRL/CMD + 0` to reset zoom
-* `CTRL/CMD + P` to print page
-* `CTRL/CMD + F` to find in page
-* `CTRL/CMD + R` to refresh the page
-* `CTRL/CMD + L` to copy current page URL
-* `CTRL + CMD + F` to enter full screen mode (`ALT + CTRL + F` on Windows)
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>[</kbd> to go back
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>]</kbd> to go forward
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>+</kbd> to zoom in
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>-</kbd> to zoom out
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>0</kbd> to reset zoom
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>P</kbd> to print page
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>F</kbd> to find in page
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>R</kbd> to refresh the page
+* <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>L</kbd> to copy current page URL
+* <kbd>CTRL</kbd> + <kbd>CMD</kbd> + <kbd>F</kbd> to enter full screen mode (<kbd>ALT</kbd> + <kbd>CTRL</kbd> + <kbd>F</kbd> on Windows)
 
 ## Contributing
 
