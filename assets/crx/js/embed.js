@@ -16,7 +16,7 @@ var dialogCancel = document.getElementById("dialog-box-cancel");
 var zoomFactor = 1.0;
 
 // Listen to keydown event
-window.onkeydown = function (e) {
+window.addEventListener('keydown', function (e) {
     // Check whether CTRL on Windows or CMD on Mac is pressed
     var modifierActive = (navigator.platform.startsWith('Mac')) ? e.metaKey : e.ctrlKey;
     var altModifierActive = (navigator.platform.startsWith('Mac')) ? e.ctrlKey : e.altKey;
@@ -91,7 +91,7 @@ window.onkeydown = function (e) {
         zoomFactor = 1.0;
         webview.setZoom(zoomFactor);
     }
-};
+});
 
 // Listen for webview load event
 webview.addEventListener('contentload', function () {
