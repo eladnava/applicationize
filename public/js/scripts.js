@@ -955,8 +955,7 @@ $(document).ready(function() {
     }
 	
     // Set the footer year
-    var footer_year = new Date().getFullYear();
-    $('.footer-year').text(footer_year);
+    $('.footer-year').text(new Date().getFullYear());
     
 }); 
 
