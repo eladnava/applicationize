@@ -953,7 +953,11 @@ $(document).ready(function() {
             document.body.appendChild(script);  
         } 
     }
-
+	
+    // Set the footer year
+    var footer_year = new Date().getFullYear();
+    $('.footer-year').text(footer_year);
+    
 }); 
 
 $(window).load(function() { 
