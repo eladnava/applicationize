@@ -953,6 +953,9 @@ $(document).ready(function() {
             document.body.appendChild(script);  
         } 
     }
+	
+    // Set year in footer
+    $('.footer-year').text(new Date().getFullYear());
 
 }); 
 
