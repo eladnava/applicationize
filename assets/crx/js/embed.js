@@ -109,7 +109,7 @@ chrome.runtime.onMessage.addListener(
         // Check for keydown event
         if (request.event === 'keydown') {
             // Invoke the local window's keydown event handler
-            window.onkeydown(request.params);
+            window.dispatchEvent(new KeyboardEvent('keydown',request.params));
         }
     }
 );
