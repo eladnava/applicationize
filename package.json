@@ -24,6 +24,6 @@
     "pem": "^1.14.2",
     "request": "^2.88.0",
     "thunkify": "2.1.2",
-    "validator": "^5.2.0"
+    "validator": "^13.7.0"
   }
 }
