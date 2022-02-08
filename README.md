@@ -53,7 +53,7 @@ npm install
 npm start
 ```
 
-Then, visit [http://localhost:3000/](http://localhost:3000/) to browse to your local instance of Applicationize.
+Then, visit [http://localhost:8080/](http://localhost:8080/) to browse to your local instance of Applicationize.
 
 ## Contributors
 

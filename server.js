@@ -23,7 +23,7 @@ app.use(route.get('/now', require('./lib/routes/now')));
 app.use(route.post('/applicationize', require('./lib/routes/applicationize')));
 
 // Define configurable port
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 
 // Listen for connections
 app.listen(port);

@@ -329,7 +329,7 @@ $(document).ready(function() {
             itemMargin: 0,
             animation: "slide",
             slideshow: true,
-            slideshowSpeed: 3000,
+            slideshowSpeed: 8080,
             directionNav: false,
             controlNav: false
         });
@@ -796,7 +796,7 @@ $(document).ready(function() {
                 formError.fadeIn(200);
                 setTimeout(function() {
                     formError.fadeOut(500);
-                }, 3000);
+                }, 8080);
             } else {
 
                 thisForm.removeClass('attempted-submit');
