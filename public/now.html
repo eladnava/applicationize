@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <h4 class="uppercase mb16">1. Generate Extension</h4>
-                            <p class="lead mb64">
+                            <p class="lead mb32">
                                 Enter the address of the web app you want to applicationize.
                             </p>
                             <form class="applicationize-form" action="/applicationize" method="post" enctype="multipart/form-data">
@@ -146,12 +146,12 @@
                         </div>
                         <div class="col-sm-6">
                             <h4 class="uppercase mb16">2. Install Extension</h4>
-                            <p class="lead mb64">
+                            <p class="lead mb32">
                                 Install the Chrome Extension to start using the applicationized web app.
                             </p>
                             
                             <!-- Link to chrome://extensions -->
-                            <div class="input-with-label text-left mb24">
+                            <div class="input-with-label text-left">
                                 <span>Copy and paste this into a new tab</span>
                                 <input type="text" name="website" value="chrome://extensions" disabled />
                             </div>
@@ -161,14 +161,18 @@
                                 a. Toggle the <b>Developer Mode</b> setting to <b>On</b> in the top right corner
                             </p>
 
+                            <!-- Unzip -->
+                            <p class="lead mb24 mb-xs-24 clearboth">
+                                b. Unzip the <b>.zip</b> archive to extract the <b>.crx</b> extension file
+                            </p>
+
                             <!-- Drag and drop -->
                             <p class="lead mb24 mb-xs-24 clearboth">
-                                b. Drag and drop the Chrome Extension to the <b>Extensions</b> page to install it
+                                c. Drag and drop the <b>.crx</b> file to the <b>Extensions</b> page to install it
                             </p>
                             <!-- Drag and drop (screenshot) -->
                             <div class="text-center mb-xs-24">
                                 <img class="cast-shadow" alt="Preview" src="img/screenshots/install.png" />
-                                <p class="desc mt24">You can also drag and drop the extension from the <b>Chrome downloads bar</b> into the extensions page to install it!</p>
                             </div>
                         </div>
                     </div>
