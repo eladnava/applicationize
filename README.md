@@ -1,6 +1,8 @@
 # Applicationize
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eladnava/applicationize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+> **Note:** Applicationize is no longer supported. Google Chrome has officially stopped supporting Packaged Apps, rendering Applicationize useless. Google Chrome now comes with a built-in feature called Application Shortcuts. It basically makes it possible to convert any web page (or web app) into a desktop app by clicking the hamburger icon in the top right -> More Tools -> "Create Shortcut" and ticking "Open as window". It is recommended to migrate to using this built-in feature, or consider an alternative solution such as [nativefier](https://github.com/nativefier/nativefier).
+ 
 Applicationize converts your favorite web apps into desktop apps with their own dedicated launcher icon. 
 
 It generates a Google Chrome extension that embeds your favorite [SPA](https://en.wikipedia.org/wiki/Single-page_application) web app and places a custom shortcut icon in your app launcher when you install it.
